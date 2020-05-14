@@ -14,7 +14,7 @@ businesses.each do |biz|
   biz = Business.create(biz)
   puts "Created #{biz[:name]}!"
 end
-p "--" * 10 + "\n\n"
+puts "--" * 10 + "\n\n"
 
 puts "Seeding Resources..."
 resources.each do |rez|

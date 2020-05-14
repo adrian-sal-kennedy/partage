@@ -6,7 +6,7 @@
         <h1><%= biz.name %>
         <%#= link_to 'Edit business', edit_business_path(biz), class: "inlinebutton" %></h1>
         <h2><%= link_to "#{biz.name} Home page", clean_url(biz.url), target: "_blank" %></h2>
-        <p><%= "lat: #{biz.latitude}, lon: #{biz.latitude}" %></p>
+        <p><%= "lat: #{biz.latitude}, lon: #{biz.longitude}" %></p>
         <p><%= biz.description %></p>
       </div>
     <% end %>
