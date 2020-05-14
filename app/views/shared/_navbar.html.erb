@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <li><%= link_to( image_tag("logo.svg", style: "max-width: 80px; max-height: 80px; display: inline-block;"), root_path, class: "logo") %></li>
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Resources", resources_index_path %></li>
+    <li><%= link_to "Agreements", agreements_index_path %></li>
+  </ul>
+<!-- 
+<%# if user_signed_in? %>
+    <%#= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <%#= link_to "Cart", carts_path %>
+  <%# else %>
+    <%#= link_to "Login", new_user_session_path %>
+  <%# end %>
+   -->
+</nav>

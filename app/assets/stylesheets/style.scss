@@ -1,5 +1,14 @@
 $backcolor: #000000;
 $forecolor: #ffffff;
+$partage-orange: #ff8c00;
+$partage-purple: #483d8b;
+
+@font-face {
+  font-family: 'AlteDIN1451Mittelschrift';
+  src:font-url('AlteDIN1451Mittelschrift.otf');
+  font-weight: normal;
+  font-style: sans-serif;
+}
 
 *{
   font-family: Arial, Helvetica, sans-serif;
@@ -7,6 +16,9 @@ $forecolor: #ffffff;
 }
 h1, h2, h3, h4, h5, h6, p {
   margin-left: 1rem;
+}
+h1, h2, {
+  font-family: 'AlteDIN1451Mittelschrift';
 }
 html {
   background-color: $backcolor;
@@ -36,10 +48,10 @@ a {
     border-color: rgba( $forecolor, 0.5 );
   }
 }
-.nav {
+nav {
   display: flex;
   justify-content: left;
-  background-color: #6495ed80;
+  background-color: rgba( $partage-purple, 0.33);
   ul {
     display: flex;
     align-items: center;
@@ -51,8 +63,11 @@ a {
     min-height: max-content;
     padding: 0.4em 0.6em 0.4em 0.6em;
     align-items: center;
-    background-color: cornflowerblue;
+    background-color: rgba( $partage-purple, 0.33);
     border-radius: 0.5em 0 0.5em 0;
+    &:first-child {
+      background-color: unset;
+    }
     &:nth-child(2) {
       font-weight: bold;
       font-size: larger;
@@ -78,7 +93,7 @@ a {
   display: flex;
   align-self: center;
   padding: 0 4rem;
-  background-color: #2090ff30;
+  background-color: rgba( $partage-purple, 0.33);
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -86,7 +101,7 @@ a {
   margin-bottom: auto;
   box-sizing: border-box;
   & > * {
-    margin: 0.5em 0;
+    margin: 0.5rem 0;
   }
   :first-child {
     margin-top: 3rem;
@@ -94,6 +109,12 @@ a {
   :last-child {
     margin-bottom: 3rem;
   }
-  border: 1rem solid #2090ff30;
-  border-radius: 0 5rem;
+  border: 1rem solid rgba( $partage-orange, 0.33 );
+  border-radius: 5rem 0;
+  & h1 {
+    font-size: 4rem;
+  }
+  & h2 {
+    font-size: 2rem;
+  }
 }
