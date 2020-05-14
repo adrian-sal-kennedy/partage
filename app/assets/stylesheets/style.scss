@@ -113,6 +113,7 @@ nav {
   border-radius: 5rem 0;
   & h1 {
     font-size: 4rem;
+    filter: drop-shadow( 2px 2px 2px #00000080);
   }
   & h2 {
     font-size: 2rem;
