@@ -150,4 +150,7 @@ nav {
   border: 0.75rem solid rgba( $partage-orange, 0.33);
   border-radius: 2rem 0;
   min-width: max-content;
+  & h2 {
+    font-size: 1.25rem;
+  }
 }
