@@ -29,7 +29,8 @@ html {
   box-sizing: border-box;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #ff804010;
+  background-color: rgba( $partage-purple, 0.1);
+  color: #ffffffd0;
   margin-left: -1em;
   padding-left: 1em;
 }
@@ -51,6 +52,9 @@ a {
 nav {
   display: flex;
   justify-content: left;
+  border: none;
+  border-bottom: 0.75rem solid rgba( $partage-orange, 0.33 );
+  border-radius: 0 0 2rem 0;
   background-color: rgba( $partage-purple, 0.33);
   ul {
     display: flex;
@@ -94,6 +98,7 @@ nav {
   align-self: center;
   padding: 0 4rem;
   background-color: rgba( $partage-purple, 0.33);
+  color: #ffffffd0;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
