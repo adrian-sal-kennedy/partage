@@ -57,8 +57,10 @@ nav {
   border-radius: 0 0 2rem 0;
   background-color: rgba( $partage-purple, 0.33);
   ul {
+    width: 100vw;
     display: flex;
     align-items: center;
+
   }
   li {
     display: inline-flex;
@@ -75,6 +77,9 @@ nav {
     &:nth-child(2) {
       font-weight: bold;
       font-size: larger;
+    }
+    &.righthand {
+      margin-left: auto;
     }
   a:hover {
     border: none;
@@ -123,4 +128,26 @@ nav {
   & h2 {
     font-size: 2rem;
   }
+}
+
+.home-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 480px;
+  flex: 0 1 5rem;
+  margin: 0.5rem;
+}
+
+.home-column-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0.5rem 0.5rem auto;
+  padding: 1rem;
+  background-color: rgba( $partage-purple, 0.33);
+  border: 0.75rem solid rgba( $partage-orange, 0.33);
+  border-radius: 2rem 0;
+  min-width: max-content;
 }

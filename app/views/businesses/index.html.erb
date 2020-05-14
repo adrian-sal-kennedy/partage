@@ -1,5 +1,12 @@
 <%= render 'shared/navbar' %>
-<div class="display">
-  <h1>Businesses#index</h1>
-  <p>Find me in app/views/businesses/index.html.erb</p>
+<div class="home-column">
+  <% if @businesses %>
+    <% @businesses.each do |biz| %>
+      <div class="home-column-panel">
+        <h1><%= biz.name %>
+        <%#= link_to 'Edit business', edit_business_path(biz), class: "inlinebutton" %></h1>
+        <h2><%= link_to "#{biz.name} Home page", full_url(biz.url.to_s), target: "_blank" %></h2>
+      </div>
+    <% end %>
+  <% end %>
 </div>
