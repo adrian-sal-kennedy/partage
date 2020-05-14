@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  resource: one
+  business: one
+  terms: MyText
+  price: 1
+
+two:
+  resource: two
+  business: two
+  terms: MyText
+  price: 1
