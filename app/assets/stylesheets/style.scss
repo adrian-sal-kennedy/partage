@@ -58,13 +58,16 @@ a {
   background-color: rgba( $partage-purple, 0.33);
   border-radius: 0.5em 0 0.5em 0;
 }
-nav {
+.nav {
   display: flex;
   justify-content: left;
   border: none;
   border-bottom: 0.75rem solid rgba( $partage-orange, 0.33 );
   border-radius: 0 0 2rem 0;
   background-color: rgba( $partage-purple, 0.33);
+}
+nav {
+  @extend .nav;
   ul {
     width: 100vw;
     display: flex;
@@ -195,4 +198,21 @@ nav {
 .wrap-25vw {
   max-width: 25vw;
   overflow-wrap: break-word;
+}
+
+// flashes
+.notice {
+  @extend .nav;
+  border-bottom: 0.33rem solid rgba( $partage-orange, 0.33 );
+  border-radius: 0 0 2rem 2rem;
+  justify-content: center;
+  display: flex;
+  position: fixed;
+  left: 20vw;
+  right: 20vw;
+  background-color: #ffc00080;
+}
+.alert {
+  @extend .notice;
+  background-color: #ff000080;
 }

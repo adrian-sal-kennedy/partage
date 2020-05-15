@@ -6,8 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require_relative 'data/users'
 require_relative 'data/businesses'
 require_relative 'data/resources'
+
+puts 'Seeding Users...'
+users.each do |usr|
+  usr = User.create(usr)
+  puts "Created #{usr[:id]}!"
+end
+puts "--" * 10 + "\n\n"
 
 puts "Seeding Businesses..."
 businesses.each do |biz|

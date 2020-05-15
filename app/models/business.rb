@@ -1,4 +1,5 @@
 class Business < ApplicationRecord
+  belongs_to :user
   has_many :resource, dependent: :destroy
   # validates :url, url: { allow_nil: true, no_local: true }
   geocoded_by :location
