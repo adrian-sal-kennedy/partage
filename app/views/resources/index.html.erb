@@ -1,5 +1,13 @@
 <%= render 'shared/navbar' %>
-<div class="display">
-<h1>Resources#index</h1>
-<p>Find me in app/views/resources/index.html.erb</p>
+<div class="home-column">
+  <% if @businesses %>
+    <% @businesses.each do |b| %>
+      <% b.resource.each do |resource| %>
+        <%= render partial: 'resource_list', locals: {resource: resource} %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <div class="home-column-panel">
+    <%= link_to "New resource", new_resource_path, class: "home-column-surface" %>
+  </div>
 </div>

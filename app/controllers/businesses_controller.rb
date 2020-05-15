@@ -1,7 +1,11 @@
 class BusinessesController < ApplicationController
+  before_action :set_business, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  # load_and_authorize_resource
+
   def index
-    @businesses = Business.all
+    # @businesses = current_user.business.includes(resource: [:agreements])
+    @businesses = current_user.business.includes(:resource)
   end
 
   def show
@@ -29,15 +33,19 @@ class BusinessesController < ApplicationController
     @business = Business.find(params[:id]).destroy
     redirect_to businesses_path
   end
-end
 
-private
+  private
 
-def business_params
-  params.require(:business).permit(
-    :name,
-    :url,
-    :location,
-    :description
-  )
+  def business_params
+    params.require(:business).permit(
+      :name,
+      :url,
+      :location,
+      :description
+    )
+  end
+
+  def set_business
+    @business = Business.find(params[:id])
+  end
 end
