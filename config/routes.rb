@@ -11,13 +11,15 @@ Rails.application.routes.draw do
   get 'resources/create'
   get 'resources/update'
   get 'resources/destroy'
-  get 'businesses/index'
-  get 'businesses/show'
-  get 'businesses/new'
-  get 'businesses/create'
-  get 'businesses/update'
-  get 'businesses/destroy'
-  get 'businesses', to: 'businesses#index'
+  resources :businesses
+  # get 'businesses/index'
+  # get 'businesses/show'
+  # get 'businesses/new'
+  # get 'businesses/create'
+  # get 'businesses/update'
+  # get 'businesses/destroy'
+  # get 'businesses/edit'
+  # get 'businesses', to: 'businesses#index'
   root to: 'welcome#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

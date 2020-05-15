@@ -7,14 +7,34 @@ class BusinessesController < ApplicationController
   end
 
   def new
+    @business = Business.new
+  end
+
+  def edit
+    @business = Business.find(params[:id])
   end
 
   def create
+    @business = Business.create(business_params)
   end
 
   def update
+    @business = Business.find(params[:id]).update(business_params)
+    redirect_to businesses_path
   end
 
   def destroy
+    @business.destroy
   end
+end
+
+private
+
+def business_params
+  params.require(:business).permit(
+    :name,
+    :url,
+    :location,
+    :description
+  )
 end
