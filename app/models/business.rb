@@ -1,4 +1,5 @@
 class Business < ApplicationRecord
+  has_many :resource, dependent: :destroy
   # validates :url, url: { allow_nil: true, no_local: true }
   geocoded_by :location
   after_validation :geocode, if: ->(obj){ obj.location.present? and obj.location_changed? }

@@ -16,6 +16,7 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.create(business_params)
+    redirect_to businesses_path
   end
 
   def update
