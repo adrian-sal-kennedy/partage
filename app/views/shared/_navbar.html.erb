@@ -1,7 +1,7 @@
 <nav>
   <ul>
-    <li><%= link_to( image_tag("logo.svg", style: "max-width: 80px; max-height: 80px; display: inline-block;"), root_path, class: "logo") %></li>
-    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to( image_tag("logo.svg", style: "max-width: 5rem; max-height: 5rem; display: inline-block;"), root_path, class: "logo") %></li>
+    <li><%= link_to "Home", root_path, class: "hideable" %></li>
     <li><%= link_to "Resources", resources_path %></li>
     <li><%= link_to "Agreements", agreements_index_path %></li>
     <li class="righthand"><%= link_to "Businesses", businesses_path %></li>

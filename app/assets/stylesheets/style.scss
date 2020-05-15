@@ -2,12 +2,29 @@ $backcolor: #000000;
 $forecolor: #ffffff;
 $partage-orange: #ff8c00;
 $partage-purple: #483d8b;
+$breakpoint-tablet: 768px;
+$breakpoint-phone: 360px;
 
 @font-face {
   font-family: 'AlteDIN1451Mittelschrift';
   src:font-url('AlteDIN1451Mittelschrift.otf');
   font-weight: normal;
   font-style: sans-serif;
+}
+
+html {
+  font-size: 16px;
+  @media screen and (min-resolution: 192dpi) {
+    font-size: 12px;
+  }
+  @media screen and (min-resolution: 384dpi) {
+    font-size: 6px;
+    .hideable{
+      display: none;
+    }
+  }
+  background-color: $backcolor;
+  color: $forecolor;
 }
 
 *{
@@ -19,10 +36,6 @@ h1, h2, h3, h4, h5, h6, p {
 }
 h1, h2, {
   font-family: 'AlteDIN1451Mittelschrift';
-}
-html {
-  background-color: $backcolor;
-  color: $forecolor;
 }
 .container {
   display: flex;
@@ -225,4 +238,10 @@ nav {
 .alert {
   @extend .notice;
   background-color: #ff000080;
+}
+
+.hideable {
+  @media screen and (max-width: 580) {
+    display: none;
+  }
 }
