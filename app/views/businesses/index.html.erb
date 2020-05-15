@@ -1,6 +1,10 @@
 <%= render 'shared/navbar' %>
 <div class="home-column">
-  <%= render 'businesses_list' %>
+  <% if @businesses %>
+    <% @businesses.each do |biz| %>
+      <%= render partial: 'business_list', locals: {biz: biz} %>
+    <% end %>
+  <% end %>
   <div class="home-column-panel">
     <%= link_to "New business", new_business_path, class: "home-column-surface" %>
   </div>

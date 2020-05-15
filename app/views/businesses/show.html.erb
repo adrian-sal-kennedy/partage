@@ -1,5 +1,12 @@
 <%= render 'shared/navbar' %>
 <div class="home-column">
-<h1>Businesses#show</h1>
-<p>Find me in app/views/businesses/show.html.erb</p>
+  <% if @business %>
+    <%= render partial: 'business_list', locals: {biz: @business} %>
+    <% @business.resource.each do |resource| %>
+      <%= render partial: 'resources/resource_list', locals: {resource: resource} %>
+    <% end %>
+  <% end %>
+  <div class="home-column-panel">
+    <%= link_to "New business", new_business_path, class: "home-column-surface" %>
+  </div>
 </div>
