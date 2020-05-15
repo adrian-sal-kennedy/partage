@@ -3,12 +3,18 @@
   <% if @businesses %>
     <% @businesses.each do |biz| %>
       <div class="home-column-panel">
+      <ul>
         <h1><%= biz.name %>
         <%#= link_to 'Edit business', edit_business_path(biz), class: "inlinebutton" %></h1>
         <h2><%= link_to "#{biz.name} Home page", clean_url(biz.url), target: "_blank" %></h2>
-        <p><%= "lat: #{biz.latitude}, lon: #{biz.longitude}" %></p>
-        <p><%= biz.description %></p>
+        <li><%= "Address: #{biz.location}" %></li>
+        <li><%= "lat: #{biz.latitude}, lon: #{biz.longitude}" %></li>
+        <li><%= biz.description %></li>
+        </ul>
       </div>
     <% end %>
   <% end %>
+  <div class="home-column-panel">
+    <%= link_to "New business", new_business_path, class: "home-column-surface" %>
+  </div>
 </div>
