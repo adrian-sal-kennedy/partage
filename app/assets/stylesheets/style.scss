@@ -45,7 +45,8 @@ a {
     color: unset;
   }
   &:hover {
-    border-bottom: 1px dotted;
+    // border-bottom: 1px dotted;
+    color: $partage-orange;
     border-color: rgba( $forecolor, 0.5 );
   }
 }
