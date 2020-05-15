@@ -50,13 +50,24 @@ a {
     border-color: rgba( $forecolor, 0.5 );
   }
 }
-nav {
+.inlinebutton {
+  display: inline-flex;
+  min-height: max-content;
+  padding: 0.4em 0.6em 0.4em 0.6em;
+  align-items: center;
+  background-color: rgba( $partage-purple, 0.33);
+  border-radius: 0.5em 0 0.5em 0;
+}
+.nav {
   display: flex;
   justify-content: left;
   border: none;
   border-bottom: 0.75rem solid rgba( $partage-orange, 0.33 );
   border-radius: 0 0 2rem 0;
   background-color: rgba( $partage-purple, 0.33);
+}
+nav {
+  @extend .nav;
   ul {
     width: 100vw;
     display: flex;
@@ -64,14 +75,9 @@ nav {
 
   }
   li {
-    display: inline-flex;
+    @extend .inlinebutton;
     margin-left: -2.1rem;
     margin-right: 2.6rem;
-    min-height: max-content;
-    padding: 0.4em 0.6em 0.4em 0.6em;
-    align-items: center;
-    background-color: rgba( $partage-purple, 0.33);
-    border-radius: 0.5em 0 0.5em 0;
     &:first-child {
       background-color: unset;
     }
@@ -92,11 +98,6 @@ nav {
   max-width: 80px;
   max-height: 80px;
   filter: drop-shadow( 2px 2px 2px #00000080);
-}
-.inlinebutton {
-  display: inline-block;
-  font-size: 1rem;
-  margin-left: 1rem;
 }
 
 .display {
@@ -193,4 +194,25 @@ nav {
     border-radius: 1rem;
     flex: 1 0 100%;
   }
+}
+.wrap-25vw {
+  max-width: 25vw;
+  overflow-wrap: break-word;
+}
+
+// flashes
+.notice {
+  @extend .nav;
+  border-bottom: 0.33rem solid rgba( $partage-orange, 0.33 );
+  border-radius: 0 0 2rem 2rem;
+  justify-content: center;
+  display: flex;
+  position: fixed;
+  left: 20vw;
+  right: 20vw;
+  background-color: #ffc00080;
+}
+.alert {
+  @extend .notice;
+  background-color: #ff000080;
 }

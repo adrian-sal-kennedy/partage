@@ -1,4 +1,5 @@
 class BusinessesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @businesses = Business.all
   end
@@ -16,6 +17,7 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.create(business_params)
+    redirect_to businesses_path
   end
 
   def update
@@ -24,7 +26,8 @@ class BusinessesController < ApplicationController
   end
 
   def destroy
-    @business.destroy
+    @business = Business.find(params[:id]).destroy
+    redirect_to businesses_path
   end
 end
 
