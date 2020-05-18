@@ -5,7 +5,7 @@ class BusinessesController < ApplicationController
 
   def index
     # @businesses = current_user.business.includes(resource: [:agreements])
-    @businesses = current_user.business.includes(:resource)
+    @businesses = current_user.businesses.includes(:resources)
   end
 
   def show
@@ -22,21 +22,21 @@ class BusinessesController < ApplicationController
   def create
     @business = current_user.businesses.create(business_params)
     if @business.errors.any?
-      flash[:success] = "#{@business.name} successfully created!"
+      flash[:alert] = "Something went wrong."
       render :new
     else
-      flash[:alert] = "Something went wrong."
+      flash[:success] = "#{@business.name} successfully created!"
       redirect_to businesses_path
     end
   end
 
   def update
-    @business = Business.find(params[:id]).update(business_params)
+    @business = current_user.businesses.find(params[:id]).update(business_params)
     redirect_to businesses_path
   end
 
   def destroy
-    @business = Business.find(params[:id]).destroy
+    @business = current_user.businesses.find(params[:id]).destroy
     redirect_to businesses_path
   end
 

@@ -20,13 +20,6 @@ def businesses
       location: '455 Centre Dandenong Rd, Heatherton VIC 3202',
       description: 'pew pew pew in the back of my room',
       user_id: 2
-    },
-    {
-      name: 'The Russian Pty Ltd',
-      url: 'www.therussian.com.au',
-      location: '355 Springvale Rd, Springvale VIC 3171',
-      description: "don't know what he does.",
-      user_id: 2
     }
   ]
 end
