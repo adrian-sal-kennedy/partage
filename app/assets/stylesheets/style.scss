@@ -1,5 +1,5 @@
-$backcolor: #000000;
-$forecolor: #ffffff;
+$backcolor: #ffffff;
+$forecolor: #000000;
 $partage-orange: #ff8c00;
 $partage-purple: #483d8b;
 
@@ -24,19 +24,23 @@ html {
   background-color: $backcolor;
   color: $forecolor;
 }
+.gradient-bg {
+  background: linear-gradient(90deg, rgba($partage-purple,0.5) 0%, rgba(#fff,1) 40%, rgba(#fff,1) 60%, rgba($partage-purple,0.5) 100%);
+}
 .container {
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
   min-height: 100vh;
   background-color: rgba( $partage-purple, 0.1);
-  color: #ffffffd0;
+  color: $forecolor;
   margin-left: -1em;
   padding-left: 1em;
+  @extend .gradient-bg;
 }
 .link {
   &:hover {
-    background-color: #ffffff20;
+    background-color: rgba($backcolor,0.33);
   }
 }
 a {
@@ -46,7 +50,8 @@ a {
   }
   &:hover {
     // border-bottom: 1px dotted;
-    color: $partage-orange;
+    // color: $partage-orange;
+    filter: drop-shadow(1px 1px 0px $partage-orange);
     border-color: rgba( $forecolor, 0.5 );
   }
 }
@@ -54,15 +59,16 @@ a {
   display: inline-flex;
   min-height: max-content;
   padding: 0.4em 0.6em 0.4em 0.6em;
-  background-color: rgba( $partage-purple, 0.33);
+  border: 1px solid rgba( $partage-purple, 0.5);
   align-items: center;
   border-radius: 0.5em 0 0.5em 0;
+  background-color: rgba($backcolor,0.33);
 }
 .nav {
   display: flex;
   justify-content: left;
   border: none;
-  border-bottom: 0.75rem solid rgba( $partage-orange, 0.33 );
+  border-bottom: 0.75rem solid $partage-orange;
   border-radius: 0 0 2rem 0;
   background-color: rgba( $partage-purple, 0.33);
 }
@@ -79,7 +85,8 @@ nav {
     margin-left: -2.1rem;
     margin-right: 2.6rem;
     &:first-child {
-      background-color: unset;
+      border: none;
+      background: none;
     }
     &:nth-child(2) {
       font-weight: bold;
@@ -93,19 +100,23 @@ nav {
   }
   }
 }
-.logo >* {
+.logo, .logo >* {
   display: inline-block;
   max-width: 80px;
   max-height: 80px;
   filter: drop-shadow( 2px 2px 2px #00000080);
+  border: 0px none;
+  background: none;
 }
-
+.oblique-shadow {
+  filter: drop-shadow( 1px 1px 0.5px $partage-purple);
+  color: $backcolor;
+}
 .display {
   display: flex;
   align-self: center;
   padding: 0 4rem;
-  background-color: rgba( $partage-purple, 0.33);
-  color: #ffffffd0;
+  background: rgba( $partage-purple, 0.33);
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -121,11 +132,11 @@ nav {
   :last-child {
     margin-bottom: 3rem;
   }
-  border: 1rem solid rgba( $partage-orange, 0.33 );
+  border: 0.8rem solid $partage-orange;
   border-radius: 5rem 0;
   & h1 {
     font-size: 4rem;
-    filter: drop-shadow( 2px 2px 2px #00000080);
+    @extend .oblique-shadow;
   }
   & h2 {
     font-size: 2rem;
@@ -149,7 +160,7 @@ nav {
   margin: 0.5rem 0.5rem auto;
   padding: 1rem;
   background-color: rgba( $partage-purple, 0.33);
-  border: 0.75rem solid rgba( $partage-orange, 0.33);
+  border: 0.5rem solid rgba( $partage-orange, 0.8);
   border-radius: 2rem 0;
   min-width: max-content;
   & h2 {
@@ -170,7 +181,7 @@ nav {
   margin-right: 0.5rem;
   width: calc(100% - 1rem);
   box-sizing: border-box;
-  background-color: rgba($partage-purple, 0.33);
+  background-color: rgba($backcolor, 0.33);
   border: 0;
   border-radius: 0.67rem 0;
   align-items: center;
@@ -190,18 +201,19 @@ nav {
   .form-input {
     padding: 5px;
     * {
-      @extend .inlinebutton;border: 3px solid rgba( $partage-orange, 0.33 );
+      @extend .inlinebutton;
+      border: 1px solid rgba( $partage-purple, 0.33 );
       border-radius: 0.5em 0 0.5em 0;
       max-width: max-content;
       display: block;
-      color: #fff;
+      color: $forecolor;
       margin: 2px;
     }
   }
 }
 ::placeholder {
   opacity: 0.5;
-  color: $partage-orange;
+  color: $partage-purple;
 }
 .wrap-25vw {
   max-width: 25vw;
@@ -220,9 +232,9 @@ nav {
   position: fixed;
   left: 20vw;
   right: 20vw;
-  background-color: #ffc00080;
+  background-color: #ffc000d0;
 }
 .alert {
   @extend .notice;
-  background-color: #ff000080;
+  background-color: #ff0000d0;
 }

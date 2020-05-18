@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  # load_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     # @businesses = current_user.business.includes(resource: [:agreements])
@@ -20,8 +20,14 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    @business = Business.create(business_params)
-    redirect_to businesses_path
+    @business = current_user.businesses.create(business_params)
+    if @business.errors.any?
+      flash[:success] = "#{@business.name} successfully created!"
+      render :new
+    else
+      flash[:alert] = "Something went wrong."
+      redirect_to businesses_path
+    end
   end
 
   def update
