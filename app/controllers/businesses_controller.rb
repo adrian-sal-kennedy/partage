@@ -1,11 +1,11 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  # load_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     # @businesses = current_user.business.includes(resource: [:agreements])
-    @businesses = current_user.business.includes(:resource)
+    @businesses = current_user.businesses.includes(:resources)
   end
 
   def show
@@ -20,17 +20,23 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    @business = Business.create(business_params)
-    redirect_to businesses_path
+    @business = current_user.businesses.create(business_params)
+    if @business.errors.any?
+      flash[:alert] = "Something went wrong."
+      render :new
+    else
+      flash[:success] = "#{@business.name} successfully created!"
+      redirect_to businesses_path
+    end
   end
 
   def update
-    @business = Business.find(params[:id]).update(business_params)
+    @business = current_user.businesses.find(params[:id]).update(business_params)
     redirect_to businesses_path
   end
 
   def destroy
-    @business = Business.find(params[:id]).destroy
+    @business = current_user.businesses.find(params[:id]).destroy
     redirect_to businesses_path
   end
 
