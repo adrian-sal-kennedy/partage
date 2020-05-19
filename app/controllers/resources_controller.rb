@@ -60,7 +60,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
   def set_business
-    return unless params[:business_id]
+    # return unless params[:business_id]
     @business = Business.find(params[:business_id])
   end
 end
