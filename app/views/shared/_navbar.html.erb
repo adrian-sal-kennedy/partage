@@ -1,15 +1,15 @@
 <nav>
   <ul>
-    <li><%= link_to( image_tag("logo.svg", style: "max-width: 80px; max-height: 80px; display: inline-block;"), root_path, class: "logo") %></li>
-    <li><%= link_to "Home", root_path %></li>
+    <li class="hideable"><%= link_to( image_tag("logo.svg", style: "max-width: 80px; max-height: 80px; display: inline-block;"), root_path, class: "logo hideable") %></li>
+    <li class="hideable"><%= link_to "Home", root_path %></li>
     <li><%= link_to "Browse resources for hire", resources_path %></li>
-    <li><%= link_to "My resources", resources_path %></li>
-    <li><%= link_to "My agreements", agreements_path %></li>
-    <li class="righthand"><%= link_to "Businesses", businesses_path %></li>
-    <li><%= link_to "Account", businesses_path %></li>
     <% if user_signed_in? %>
+      <li><%= link_to "My resources", resources_path %></li>
+      <li><%= link_to "My agreements", agreements_path %></li>
+      <li class="righthand"><%= link_to "Businesses", businesses_path %></li>
+      <li><%= link_to "Account", businesses_path %></li>
       <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
     <% else %>
-      <li><%= link_to "Login", new_user_session_path %></li>
+      <li class="righthand"><%= link_to "Login", new_user_session_path %></li>
     <% end %>
 </nav>

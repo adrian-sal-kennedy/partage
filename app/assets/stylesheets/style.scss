@@ -92,7 +92,7 @@ a {
 nav {
   @extend .nav;
   ul {
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
 
@@ -165,8 +165,9 @@ nav {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  min-width: 480px;
-  flex: 0 1 5rem;
+  min-width: 30rem;
+  flex: 1 1 30%;
+  max-height: max-content;
   margin: 0.5rem;
 }
 
@@ -247,11 +248,21 @@ nav {
   justify-content: center;
   display: flex;
   position: fixed;
-  left: 20vw;
-  right: 20vw;
+  left: 20%;
+  right: 20%;
   background-color: #ffc000d0;
+  animation: disappear2s 0s ease-out 2s forwards;
 }
 .alert {
   @extend .notice;
   background-color: #ff0000d0;
+}
+
+@keyframes disappear2s {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
 }
