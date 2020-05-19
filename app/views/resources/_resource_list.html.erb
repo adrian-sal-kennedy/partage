@@ -1,14 +1,14 @@
 <div class="home-column-panel">
-    <h1>
-      <%= resource.name %>
-    </h1>
-    <p class="wrap-25vw">
-      <%= "Description: #{resource.description}" %>
-    </p>
-    <%= image_tag resource.picture if (resource.picture != nil) %>
-    <p>
-      <%= link_to 'View', resource_path(resource.id), class: "inlinebutton" %>
-      <%= link_to 'Edit', edit_resource_path(resource.id), class: "inlinebutton" %>
-      <%= link_to "Delete", resource_path(resource.id), method: :delete, data: { confirm: "This will delete #{resource.name} and all associated agreements. Are you sure?" }, class: "inlinebutton" %>
-    </p>
+  <h1>
+    <%= resource.name %>
+  </h1>
+  <p class="wrap-25vw">
+    <%= "Description: #{resource.description}" %>
+  </p>
+  <%= image_tag get_picture(resource.picture) %>
+  <p>
+    <%= link_to 'View', resource_path(resource.id), class: "inlinebutton" %>
+    <%= link_to 'Edit', edit_resource_path(resource.id), class: "inlinebutton" %>
+    <%= link_to "Delete", resource_path(resource.id), method: :delete, data: { confirm: "This will delete #{resource.name} and all associated agreements. Are you sure?" }, class: "inlinebutton" %>
+  </p>
 </div>

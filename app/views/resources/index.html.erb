@@ -6,7 +6,7 @@
         <%= render partial: 'resource_list', locals: {resource: resource} %>
       <% end %>
   <div class="home-column-panel">
-    <%= link_to "New resource for #{b.name}", new_business_resource_path(b.id), class: "home-column-surface" %>
+    <%= link_to "New resource for #{b.name}", new_business_resource_path(b), class: "home-column-surface" %>
   </div>
     <% end %>
   <% end %>

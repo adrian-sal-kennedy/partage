@@ -1,5 +1,5 @@
 <div class="home-column-surface">
-  <%= form_with model: @resource, local: true do |form| %>
+  <%= form_with model: [ @business, @business.resources.build ], local: true do |form| %>
       <div class="form-input">
         <%= form.label :name %>
         <%= form.text_field :name, placeholder: "Office space, 12sqm in Brunswick", size: 55 %>

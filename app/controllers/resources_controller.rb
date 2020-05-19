@@ -12,17 +12,13 @@ class ResourcesController < ApplicationController
   end
 
   def new
-    # @resource = Resource.new
-    # @business = current_user.businesses.find(params[:business_id])
   end
 
   def edit
-    # @resource = Resource.find(params[:id])
   end
 
   def create
-    @resource = current_user.businesses.find(:business_id).resources.create(resource_params)
-    # @resource = Resource.create(resource_params)
+    @resource = @business.resources.create(resource_params)
     redirect_to resources_path
   end
   # def create
@@ -60,7 +56,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
   def set_business
-    # return unless params[:business_id]
+    return unless params[:business_id]
     @business = Business.find(params[:business_id])
   end
 end
