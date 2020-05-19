@@ -22,6 +22,11 @@ html {
     .hideable{
       display: none;
     }
+    .home-column-panel{
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      width: calc(100% - 1rem);
+    }
   }
   background-color: $backcolor;
   color: $forecolor;
@@ -81,10 +86,23 @@ a {
   border-radius: 0.5em 0 0.5em 0;
   background-color: rgba($backcolor,0.33);
 }
-.nav {
+.inline-list, ul.inline-list {
   display: flex;
+  width: 100%;
   justify-content: left;
   border: none;
+  padding-left: 0;
+  li {
+    display: flex;
+    // margin-left: -2.1rem;
+    // margin-right: 2.6rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.nav {
+  @extend .inline-list;
   border-bottom: 0.75rem solid $partage-orange;
   border-radius: 0 0 2rem 0;
   background-color: rgba( $partage-purple, 0.33);
@@ -95,7 +113,6 @@ nav {
     width: 100%;
     display: flex;
     align-items: center;
-
   }
   li {
     @extend .inlinebutton;
@@ -109,13 +126,14 @@ nav {
       font-weight: bold;
       font-size: larger;
     }
-    &.righthand {
-      margin-left: auto;
-    }
   a:hover {
     border: none;
   }
   }
+}
+.righthand {
+  margin-left: unset;
+  margin-left: auto !important;
 }
 .logo, .logo >* {
   display: inline-block;
@@ -191,13 +209,18 @@ nav {
     border-radius: 1rem;
     flex: 1 0 100%;
   }
+  * {
+    margin-bottom: 0.5rem;
+  }
 }
-
-.home-column-surface {
-  @extend .home-column-panel;
+.full-width-panel {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   width: calc(100% - 1rem);
+}
+.home-column-surface {
+  @extend .home-column-panel;
+  @extend .full-width-panel;
   box-sizing: border-box;
   background-color: rgba($backcolor, 0.33);
   border: 0;
@@ -251,14 +274,14 @@ nav {
   left: 20%;
   right: 20%;
   background-color: #ffc000d0;
-  animation: disappear2s 0s ease-out 2s forwards;
+  animation: disappear 0s ease-out 3s forwards;
 }
-.alert {
+.alert, .authorization_error {
   @extend .notice;
   background-color: #ff0000d0;
 }
 
-@keyframes disappear2s {
+@keyframes disappear {
   to {
     width: 0;
     height: 0;

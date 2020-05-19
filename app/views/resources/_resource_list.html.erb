@@ -1,4 +1,4 @@
-<div class="home-column-panel">
+<%= tag.div class: (divclass || "") do %>
   <h1>
     <%= resource.name %>
   </h1>
@@ -6,9 +6,9 @@
     <%= "Description: #{resource.description}" %>
   </p>
   <%= image_tag get_picture(resource.picture) %>
-  <p>
-    <%= link_to 'View', resource_path(resource.id), class: "inlinebutton" %>
-    <%= link_to 'Edit', edit_resource_path(resource.id), class: "inlinebutton" %>
-    <%= link_to "Delete", resource_path(resource.id), method: :delete, data: { confirm: "This will delete #{resource.name} and all associated agreements. Are you sure?" }, class: "inlinebutton" %>
-  </p>
-</div>
+  <ul class="inline-list">
+    <li><%= link_to 'View', business_resource_path(business,resource), class: "inlinebutton" %></li>
+    <li><%= link_to 'Edit', edit_business_resource_path(business,resource), class: "inlinebutton" %></li>
+    <li class="righthand"><%= link_to "Delete", resource_path(resource), method: :delete, data: { confirm: "This will delete #{resource.name} and all associated agreements. Are you sure?" }, class: "inlinebutton" %></li>
+  </ul>
+<% end %>

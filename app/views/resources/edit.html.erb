@@ -1,0 +1,8 @@
+<%= render 'shared/navbar' %>
+<div class="home-column">
+  <div class="home-column-panel">
+    <h1>Edit resource for hire.</h1>
+    <h2><%= "#{@business.name}" %></h2>
+    <%= render partial: 'resource_form', locals: {business: @business, resource: @resource} %>
+  </div>
+</div>

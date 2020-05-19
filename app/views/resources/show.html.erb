@@ -1,2 +1,4 @@
-<h1>Resources#show</h1>
-<p>Find me in app/views/resources/show.html.erb</p>
+<%= render 'shared/navbar' %>
+<div class="home-column">
+  <%= render partial: 'resource_list', locals: {resource: @resource, business: @business, divclass: "home-column-panel full-width-panel"} %>
+</div>

@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
-  before_action :set_resource, only: %i[show edit update destroy]
-  before_action :set_business
   before_action :authenticate_user!
+  before_action :set_business, only: %i[new create show edit update destroy]
+  before_action :set_resource, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   def index
@@ -9,28 +9,23 @@ class ResourcesController < ApplicationController
   end
 
   def show
+    @resource = Resource.find(params[:id])
+    @business = current_user.businesses.find(params[:business_id])
   end
 
   def new
   end
 
   def edit
+    @resource = Resource.find(params[:id])
+    @business = current_user.businesses.find(params[:business_id])
   end
 
   def create
     @resource = @business.resources.create(resource_params)
+    flash[:success] = "Successfully added #{@resource.name}"
     redirect_to resources_path
   end
-  # def create
-  #   @business = current_user.business.create(business_params)
-  #   if @business.errors.any?
-  #     flash[:alert] = "Something went wrong."
-  #     render :new
-  #   else
-  #     flash[:success] = "#{@business.name} successfully created!"
-  #     redirect_to businesses_path
-  #   end
-  # end
 
   def update
     @resource = Resource.find(params[:id]).update(resource_params)
@@ -38,7 +33,7 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    @resource = Resource.find(params[:id]).destroy
+    @resource.destroy
     redirect_to resources_path
   end
 
@@ -52,11 +47,11 @@ class ResourcesController < ApplicationController
     )
   end
 
-  def set_resource
-    @resource = Resource.find(params[:id])
-  end
   def set_business
     return unless params[:business_id]
-    @business = Business.find(params[:business_id])
+    @business = current_user.businesses.find(params[:business_id])
+  end
+  def set_resource
+    @resource = Resource.find(params[:id])
   end
 end
