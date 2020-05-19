@@ -4,7 +4,7 @@
     <li class="hideable"><%= link_to "Home", root_path %></li>
     <li><%= link_to "Browse resources for hire", resources_path %></li>
     <% if user_signed_in? %>
-      <li><%= link_to "My resources", resources_path %></li>
+      <li><%= link_to "My resources", user_resources_path(current_user) %></li>
       <li><%= link_to "My agreements", agreements_path %></li>
       <li class="righthand"><%= link_to "Businesses", businesses_path %></li>
       <li><%= link_to "Account", businesses_path %></li>

@@ -8,10 +8,12 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     # if user.admin?
-      can :manage, :all
+      # can :manage, :all
     # # else
+    can [:index, :show], :all
     #   can [:index, :show], [Business, Resource, Agreement]
-    #   can [:edit, :update, :destroy], [Business], user_id: user.id
+    cannot [:edit, :update, :destroy], [Business, Resource, Agreement]
+    can [:edit, :update, :destroy], [Business, Resource, Agreement], user_id: user.id
     #   can [:index, :show, :new, :create], [Agreement]
     #   can [:edit, :update, :destroy], [Agreement], user_id: user.id
     # # end

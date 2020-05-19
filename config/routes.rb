@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     resources :resources
     resources :agreements
   end
+  resources :users do
+    resources :resources
+    resources :agreements
+  end
   resources :agreements
   resources :resources
   root to: 'welcome#index'

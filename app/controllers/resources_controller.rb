@@ -5,7 +5,11 @@ class ResourcesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @businesses = current_user.businesses.includes(:resources)
+    if params[:user_id]
+      @businesses = current_user.businesses.includes(:resources)
+    else
+      @businesses = Business.includes(:resources)
+    end
   end
 
   def show
@@ -33,6 +37,7 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
+    flash[:success] = "Successfully yeeted #{@resource.name}"
     @resource.destroy
     redirect_to resources_path
   end

@@ -103,6 +103,7 @@ a {
 
 .nav {
   @extend .inline-list;
+  width: unset;
   border-bottom: 0.75rem solid $partage-orange;
   border-radius: 0 0 2rem 0;
   background-color: rgba( $partage-purple, 0.33);
@@ -196,7 +197,7 @@ nav {
   margin: 0.5rem 0.5rem auto;
   padding: 1rem;
   background-color: rgba( $partage-purple, 0.33);
-  border: 0.5rem solid rgba( $partage-orange, 0.8);
+  border: 0.5rem solid rgba( $partage-orange, 1);
   border-radius: 2rem 0;
   min-width: max-content;
   & h2 {
@@ -266,6 +267,9 @@ nav {
 // flashes
 .notice {
   @extend .nav;
+  font-family: 'AlteDIN1451Mittelschrift';
+  font-size: 1.5rem;
+  min-height: 2rem;
   border-bottom: 0.33rem solid rgba( $partage-orange, 0.33 );
   border-radius: 0 0 2rem 2rem;
   justify-content: center;
@@ -274,9 +278,10 @@ nav {
   left: 20%;
   right: 20%;
   background-color: #ffc000d0;
-  animation: disappear 0s ease-out 3s forwards;
+  color: $forecolor;
+  animation: disappear 0s ease-out 2s forwards;
 }
-.alert, .authorization_error {
+.alert {
   @extend .notice;
   background-color: #ff0000d0;
 }

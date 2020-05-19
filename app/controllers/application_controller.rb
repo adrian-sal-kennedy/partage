@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   # end
   rescue_from CanCan::AccessDenied do |exception|
     flash[:authorization_error] = "Not authorized to perform that action"
-    redirect_to root_path
+    redirect_to resources_path
   end 
 end
