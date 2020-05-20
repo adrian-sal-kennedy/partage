@@ -1,15 +1,37 @@
 <nav>
   <ul>
-    <li class="hideable"><%= link_to( image_tag("logo.svg", style: "max-width: 80px; max-height: 80px; display: inline-block;"), root_path, class: "logo hideable") %></li>
-    <li class="hideable"><%= link_to "Home", root_path %></li>
-    <li><%= link_to "Browse resources for hire", resources_path %></li>
+    <li>
+      <%= link_to image_tag("logo.svg", class: "logo"), root_path %>
+    </li>
+    <li class="hideable">
+      <%= link_to "Home", root_path %>
+    </li>
+    <li>
+      <%= link_to image_tag("icons/browse-all.svg", class: "icon"), user_resources_path(current_user) %>
+      <%= link_to "Browse resources for hire", resources_path, class: "text" %>
+    </li>
     <% if user_signed_in? %>
-      <li><%= link_to "My resources", user_resources_path(current_user) %></li>
-      <li><%= link_to "My agreements", user_agreements_path(current_user) %></li>
-      <li class="righthand"><%= link_to "Businesses", businesses_path %></li>
-      <li><%= link_to "Account", businesses_path %></li>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      <li>
+        <%= link_to image_tag("icons/browse-mine.svg", class: "icon"), user_resources_path(current_user) %>
+        <%= link_to "My resources", user_resources_path(current_user), class: "text" %>
+      </li>
+      <li>
+        <%= link_to image_tag("icons/agreement.svg", class: "icon"), user_agreements_path(current_user) %>
+        <%= link_to "My agreements", user_agreements_path(current_user), class: "text" %>
+      </li>
+      <li class="righthand">
+        <%= link_to image_tag("icons/factory.svg", class: "icon"), businesses_path %>
+        <%= link_to "Businesses", businesses_path, class: "text" %>
+      </li>
+      <li>
+        <%= link_to image_tag("icons/logout.svg", class: "icon"), destroy_user_session_path, method: :delete %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "text" %>
+      </li>
     <% else %>
-      <li class="righthand"><%= link_to "Login", new_user_session_path %></li>
+      <li class="righthand">
+        <%= link_to image_tag("icons/login.svg", class: "icon"), new_user_session_path %>
+        <%= link_to "Login", new_user_session_path, class: "text" %>
+      </li>
     <% end %>
+  </ul>
 </nav>
