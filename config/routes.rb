@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     resources :resources
     resources :agreements
   end
-  resources :agreements
-  resources :resources
+  resources :resources do
+    resources :agreements
+  end
   root to: 'welcome#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
