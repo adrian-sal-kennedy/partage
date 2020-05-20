@@ -3,7 +3,7 @@ $forecolor: #000000;
 $partage-orange: #ff8c00;
 $partage-purple: #483d8b;
 $breakpoint-icons: 940px;
-$breakpoint-tablet: 768px;
+$breakpoint-tablet: 620px;
 $breakpoint-phone: 360px;
 
 @font-face {
@@ -16,10 +16,10 @@ $breakpoint-phone: 360px;
 html {
   font-size: 16px;
   @media screen and (min-resolution: 192dpi) {
-    font-size: 12px;
+    font-size: 13px;
   }
   @media screen and (min-resolution: 384dpi) {
-    font-size: 6px;
+    font-size: 11px;
   }
   background-color: $backcolor;
   color: $forecolor;
@@ -83,9 +83,8 @@ a {
 }
 .inline-list, ul.inline-list {
   display: flex;
-  // width: 100%;
-  // max-width: 100vw;
   width: 100%;
+  // max-width: 100vw;
   justify-content: left;
   border: none;
   padding-left: 0;
@@ -160,6 +159,7 @@ nav {
   margin-top: auto;
   margin-bottom: auto;
   box-sizing: border-box;
+  max-width: calc(100% - 2rem);
   & > * {
     margin: 0.5rem 0;
   }
@@ -200,7 +200,7 @@ nav {
   background-color: rgba( $partage-purple, 0.33);
   border: 0.5rem solid rgba( $partage-orange, 1);
   border-radius: 2rem 0;
-  min-width: max-content;
+  // min-width: max-content;
   & h2 {
     font-size: 1.25rem;
   }
@@ -259,7 +259,7 @@ nav {
   color: $partage-purple;
 }
 .wrap-25vw {
-  max-width: 90%;
+  max-width: calc(100% - 1rem);
   overflow-wrap: break-word;
 }
 
