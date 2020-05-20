@@ -1,2 +1,7 @@
-<h1>Agreements#new</h1>
-<p>Find me in app/views/agreements/new.html.erb</p>
+<%= render 'shared/navbar' %>
+<div class="home-column">
+  <div class="home-column-panel">
+    <h1><% "Lodge your interest in hiring #{@resource.name} from #{@business.name}." %></h1>
+    <%= render partial: 'resource_form', locals: {business: @business, resource: @resource, agreement: @agreement} %>
+  </div>
+</div>

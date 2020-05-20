@@ -1,5 +1,20 @@
 <%= render 'shared/navbar' %>
-<div class="display">
-<h1>Agreements#index</h1>
-<p>Find me in app/views/agreements/index.html.erb</p>
-</div>
+<% if @businesses %>
+  <% @businesses.each do |b| %>
+    <div class="home-column-panel">
+      <h2><%= b.name %></h2>
+    <% b.resources.each do |r| %>
+      <% if r.agreements.count != 0 %>
+        <h2><%= r.name %></h2>
+        <% r.agreements.each do |agg| %>
+          <%= render partial: 'agreement_list', locals: {agreement: agg, resource: r, divclass: "home-column-inset"} %>
+        <% end %>
+      <% else %>
+        <ul>
+          <li><%= "currently no agreements for #{r.name}" %></li>
+        </ul>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>

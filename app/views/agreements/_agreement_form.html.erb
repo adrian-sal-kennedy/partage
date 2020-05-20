@@ -1,0 +1,15 @@
+<div class="home-column-surface">
+  <%= form_with model: [ @resource, @resource.agreements.build ], local: true do |form| %>
+      <div class="form-input">
+        <%= form.label :terms %>
+        <%= form.text_area :terms, placeholder: "Room available monday-thursday, 9-5, you'll have to wait for keyfob access if you want to stay later. Don't drink all the milk.", cols: 50, rows: 10 %>
+      </div>
+      <div class="form-input">
+        <%= form.label "Price in dollars per month." %>
+        <%= form.text_field :price, placeholder: "$100", size: 55 %>
+      </div>      
+      <div class="form-input">
+        <%= form.submit %>
+      </div>
+  <% end %>
+</div>

@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:show, :index]
   before_action :set_business, only: %i[new create show edit update destroy]
   before_action :set_resource, only: %i[show edit update destroy]
   load_and_authorize_resource
@@ -7,8 +7,11 @@ class ResourcesController < ApplicationController
   def index
     if params[:user_id]
       @businesses = current_user.businesses.includes(:resources)
+      @current_userid = current_user.id
     else
       @businesses = Business.includes(:resources)
+      # user_id is never zero so below will make the view realise our user owns nothing.
+      @current_userid = 0
     end
   end
 

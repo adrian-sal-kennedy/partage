@@ -191,7 +191,7 @@ nav {
   justify-content: center;
   flex-wrap: wrap;
   min-width: 30rem;
-  flex: 1 1 30%;
+  // flex: 1 1 30%;
   max-height: max-content;
   margin: 0.5rem;
 }
@@ -204,8 +204,9 @@ nav {
 .home-column-panel {
   display: flex;
   flex-direction: column;
+  max-height: max-content;
   align-items: flex-start;
-  margin: 0.5rem 0.5rem auto;
+  margin: 0.5rem 0.5rem;
   padding: 1rem;
   background-color: rgba( $partage-purple, 0.33);
   border: 0.5rem solid rgba( $partage-orange, 1);
@@ -296,6 +297,10 @@ nav {
 .alert {
   @extend .notice;
   background-color: #ff0000d0;
+}
+.success {
+  @extend .notice;
+  background-color: #20d020d0;
 }
 
 @keyframes disappear {
