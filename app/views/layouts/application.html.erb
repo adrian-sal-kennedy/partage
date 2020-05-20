@@ -18,9 +18,9 @@
   <% if flash[:alert] %>
     <p class="alert"><%= alert %></p>
   <% end %>
-  <% if flash[:authorization_error] %>
-    <p class="alert"><%= authorization_error %></p>
-  <% end %>
+  <!-- <%# if flash[:authorization_error] %> %>
+    <%# <p class="alert"><%= authorization_error %></p> %>
+  <%# <% end %> %> -->
   <div class="container">
   <%= yield %>
   </div>
