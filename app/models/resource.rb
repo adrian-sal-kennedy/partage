@@ -5,7 +5,6 @@ class Resource < ApplicationRecord
 
   def user_id
     id = User.includes(businesses: [:resources]).find(Business.find(self.business_id).id).id
-    puts "========== user_id = #{id} =========="
     return id
   end
 
