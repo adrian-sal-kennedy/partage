@@ -14,7 +14,11 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
-    @business = current_user.businesses.find(params[:business_id])
+    if params[:business_id]
+      @business = current_user.businesses.find(params[:business_id])
+    else
+      @business = Business.includes(:resources).find(@resource.business_id)
+    end
   end
 
   def new

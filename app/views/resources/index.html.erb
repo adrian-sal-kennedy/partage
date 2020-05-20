@@ -1,7 +1,7 @@
 <%= render 'shared/navbar' %>
-<div class="home-column">
   <% if @businesses %>
     <% @businesses.each do |b| %>
+      <div class="home-column-inset">
       <% b.resources.each do |resource| %>
         <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
       <% end %>
@@ -10,6 +10,6 @@
           <%= link_to "New resource for #{b.name}", new_business_resource_path(b), class: "home-column-surface" %>
         </div>
       <% end %>
+      </div>
     <% end %>
   <% end %>
-</div>

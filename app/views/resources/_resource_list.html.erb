@@ -2,17 +2,17 @@
   <h1>
     <%= resource.name %>
   </h1>
-  <p class="wrap-25vw">
+  <p class="wrap-text">
     <%= "Description: #{resource.description}" %>
   </p>
   <%= image_tag get_picture(resource.picture) %>
   <ul class="inline-list">
-    <li><%= link_to 'View', business_resource_path(business,resource), class: "inlinebutton" %></li>
+    <li><%= link_to 'View', resource_path(resource), class: "inlinebutton" %></li>
     <% if can? :edit, resource %>
       <li><%= link_to 'Edit', edit_business_resource_path(business,resource), class: "inlinebutton" %></li>
       <li class="righthand"><%= link_to "Delete", resource_path(resource), method: :delete, data: { confirm: "This will delete #{resource.name} and all associated agreements. Are you sure?" }, class: "inlinebutton" %></li>
     <% else %>
-      <li class="righthand"><%= link_to "Express interest in using this resource", new_resource_agreement_path(resource), class: "home-column-surface" %>
+      <li class="righthand"><%= link_to "I'm interested!", new_resource_agreement_path(resource), class: "inlinebutton" %>
     <% end %>
   </ul>
 <% end %>
