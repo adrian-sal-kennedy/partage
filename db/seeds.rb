@@ -28,7 +28,8 @@ puts "--" * 10 + "\n\n"
 puts "Seeding Businesses..."
 businesses.each do |biz|
   biz = Business.create(biz)
-  puts "Created #{biz[:name]}!"
+  business = Business.find_by_name(biz[:name])
+  puts "Created #{business.name}!"
 end
 biz = Business.create(
   {
@@ -44,7 +45,8 @@ puts "--" * 10 + "\n\n"
 puts "Seeding Resources..."
 resources.each do |rez|
   rez = Resource.create(rez)
-  puts "Created #{rez[:name]}!"
+  resource = Resource.find_by_name(rez[:name])
+  puts "Created #{resource.name}!"
 end
 rez = Resource.create(
   {
