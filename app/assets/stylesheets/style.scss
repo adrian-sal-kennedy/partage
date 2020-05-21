@@ -289,7 +289,7 @@ nav {
 .notice {
   @extend .nav;
   font-family: 'AlteDIN1451Mittelschrift';
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   min-height: 2rem;
   border-bottom: 0.33rem solid rgba( $partage-orange, 0.33 );
   border-radius: 0 0 2rem 2rem;
@@ -303,6 +303,10 @@ nav {
   animation: disappear 0s ease-out 2s forwards;
 }
 .alert {
+  @extend .notice;
+  background-color: #ff6600d0;
+}
+.error {
   @extend .notice;
   background-color: #ff0000d0;
 }

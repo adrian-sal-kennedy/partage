@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   #   render file: Rails.root.join('public/403.html'), status: :forbidden
   # end
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:authorization_error] = "Not authorized to perform that action"
-    redirect_to resources_path
+    pp flash[:alert] = exception.message
+    redirect_to user_resources_path(current_user.id)
   end 
 end

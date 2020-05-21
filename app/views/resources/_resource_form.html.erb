@@ -11,7 +11,9 @@
       <div class="form-input">
         <%= form.label :picture %>
         <%= form.text_field :picture, placeholder: "www.toebeans.com.au", size: 55 %>
-      </div>      
+      </div>
+      <%= form.hidden_field :business_id, :value => @business.id %>
+      <%= form.hidden_field :user_id, :value => @user.id %>
       <div class="form-input">
         <%= form.submit %>
       </div>

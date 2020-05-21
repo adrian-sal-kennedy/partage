@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
-  before_action :authenticate_user!, :except => [:show, :index]
-  before_action :set_business, only: %i[new create show edit update destroy]
-  before_action :set_resource, only: %i[show edit update destroy]
+  before_action :set_business, only: %i[new show edit create update destroy]
+  before_action :set_resource, only: %i[new show edit create update destroy]
+  before_action :authenticate_user!, except: %i[show index]
   load_and_authorize_resource
 
   def index
@@ -9,11 +9,11 @@ class ResourcesController < ApplicationController
       @businesses = current_user.businesses.includes(:resources)
       @current_userid = current_user.id
     else
-      puts "======= indexing all resources for guest user"
       @businesses = Business.includes(:resources)
       if user_signed_in?
         @current_userid = current_user.id
       else
+        puts "======= indexing all resources for guest user"
         # user_id is never zero so below will make the view realise our user owns nothing.  
         @current_userid = 0
       end
@@ -29,6 +29,9 @@ class ResourcesController < ApplicationController
   end
 
   def new
+    @business = current_user.businesses.find(params[:business_id])
+    @resource = @business.resources.new
+    @user = current_user
   end
 
   def edit
@@ -37,9 +40,13 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @resource = @business.resources.create(resource_params)
-    flash[:success] = "Successfully added #{@resource.name}"
-    redirect_to resources_path
+    if @resource.errors.any?
+      render :new
+    else
+      @resource = Resource.create!(resource_params)
+      flash[:notice] = "Successfully added #{@resource.name}"
+      redirect_to user_resources_path(current_user.id)
+    end
   end
 
   def update
@@ -48,9 +55,9 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    flash[:success] = "Successfully yeeted #{@resource.name}"
+    flash[:notice] = "Successfully yeeted #{@resource.name}"
     @resource.destroy
-    redirect_to resources_path
+    redirect_to user_resources_path(current_user.id)
   end
 
   private
@@ -59,16 +66,20 @@ class ResourcesController < ApplicationController
     params.require(:resource).permit(
       :name,
       :description,
-      :picture
+      :picture,
+      :business_id,
+      :user_id
     )
   end
 
   def set_business
     puts "======== resources_controller:set_business = #{params[:business_id]}"
     return unless params[:business_id]
-    @business = current_user.businesses.find(params[:business_id])
+    @business = current_user.businesses.includes(:resources).find(params[:business_id])
   end
   def set_resource
-    @resource = Resource.find(params[:id])
+    puts "======== resources_controller:set_resource, business_id = #{params[:business_id]}"
+    return unless params[:id]
+    @resource = current_user.resources.find(params[:id])
   end
 end

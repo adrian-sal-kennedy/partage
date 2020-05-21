@@ -57,3 +57,11 @@ rez = Resource.create(
       picture: 'https://live.staticflickr.com/3850/15222980396_b43578325d_b.jpg'
   }
 )
+rez = Resource.create({
+  name: 'PA system. only used thursdays',
+  user_id: 1,
+  business_id: 5,
+  description: "I do karaoke sessions at pubs, but for the moment i'm only doing thursdays so it's available for hire.\r\n\r\nincludes TV, mixer, 2x foldbacks, 2x 200watt PA units and stands.\r\n\r\ndon't break it please.",
+  picture: "https://cdn.djcity.com.au/wp-content/uploads/2017/11/29105026/170103_side1-500x500.jpg"
+  }
+)
