@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
   before_action :set_business, only: %i[new show edit create update destroy]
-  before_action :set_resource, only: %i[new show edit create update destroy]
+  before_action :set_resource, only: %i[new edit create update destroy]
   before_action :authenticate_user!, except: %i[show index]
   load_and_authorize_resource
 

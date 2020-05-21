@@ -1,5 +1,5 @@
 class AgreementsController < ApplicationController
-  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_business, only: %i[new create show edit update destroy]
   before_action :set_resource, only: %i[show edit update destroy]
   load_and_authorize_resource
