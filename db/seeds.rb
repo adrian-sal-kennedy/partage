@@ -9,6 +9,10 @@
 require_relative 'data/users'
 require_relative 'data/businesses'
 require_relative 'data/resources'
+require 'aws-sdk-s3'
+require 'open-uri'
+
+s3 = Aws::S3::Resource.new(region: 'ap-southeast-2')
 
 puts 'Seeding Users...'
 users.each do |usr|
@@ -43,8 +47,11 @@ biz = Business.create(
 puts "--" * 10 + "\n\n"
 
 puts "Seeding Resources..."
-resources.each do |rez|
-  rez = Resource.create(rez)
+
+resources.each do |r|
+  rez = Resource.create(r.except(:picture))
+  path = r[:picture]
+  rez.picture.attach(io: URI.open(path), filename: "#{File.extname(path)}")
   resource = Resource.find_by_name(rez[:name])
   puts "Created #{resource.name}!"
 end
@@ -54,6 +61,7 @@ rez = Resource.create(
       user_id: 1,
       business_id: 2,
       description: 'large category 3 kitchen, time share with small company 3 days/wk',
-      picture: 'https://live.staticflickr.com/3850/15222980396_b43578325d_b.jpg'
   }
 )
+path = 'https://live.staticflickr.com/3850/15222980396_b43578325d_b.jpg'
+rez.picture.attach(io: URI.open(path), filename: "#{File.extname(path)}")

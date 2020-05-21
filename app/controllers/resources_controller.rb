@@ -1,6 +1,7 @@
 class ResourcesController < ApplicationController
-  before_action :set_business, only: %i[new show edit create update destroy]
-  before_action :set_resource, only: %i[new edit create update destroy]
+  before_action :set_user
+  before_action :set_business, only: %i[new show edit destroy]
+  before_action :set_resource, only: %i[new edit destroy]
   before_action :authenticate_user!, except: %i[show index]
   load_and_authorize_resource
 
@@ -29,14 +30,15 @@ class ResourcesController < ApplicationController
   end
 
   def new
-    @business = current_user.businesses.find(params[:business_id])
-    @resource = @business.resources.new
-    @user = current_user
+    # @business = current_user.businesses.find(params[:business_id])
+    # @resource = @business.resources.new
+    # @user = current_user
   end
 
   def edit
-    @resource = Resource.find(params[:id])
-    @business = current_user.businesses.find(params[:business_id])
+    # @user = current_user
+    # @resource = @user.resources.find(params[:id])
+    # @business = current_user.businesses.find(params[:business_id])
   end
 
   def create
@@ -45,13 +47,13 @@ class ResourcesController < ApplicationController
     else
       @resource = Resource.create!(resource_params)
       flash[:notice] = "Successfully added #{@resource.name}"
-      redirect_to user_resources_path(current_user.id)
+      redirect_to user_resources_path(@user.id)
     end
   end
 
   def update
     @resource = Resource.find(params[:id]).update(resource_params)
-    redirect_to resources_path
+      redirect_to user_resources_path(@user.id)
   end
 
   def destroy
@@ -72,6 +74,15 @@ class ResourcesController < ApplicationController
     )
   end
 
+  def set_user
+    if user_signed_in?
+      @user = current_user
+    else
+      puts "======= indexing all resources for guest user" 
+      @user = User.new
+    end
+    puts "======== resources_controller:set_user, user_id = #{@user.id}"
+  end
   def set_business
     puts "======== resources_controller:set_business = #{params[:business_id]}"
     return unless params[:business_id]

@@ -8,7 +8,7 @@
   <p class="wrap-text">
     <%= "Description: #{resource.description}" %>
   </p>
-  <%= image_tag get_picture(resource.picture) %>
+  <%= image_tag resource.picture if resource.picture.attached? %>
   <ul class="inline-list">
     <li><%= link_to 'View', resource_path(resource), class: "inlinebutton" %></li>
     <%# if can? :edit, resource %>

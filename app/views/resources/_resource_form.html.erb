@@ -1,5 +1,5 @@
 <div class="home-column-surface">
-  <%= form_with model: [ @business, @business.resources.build ], local: true do |form| %>
+  <%= form_with model: [ @business, @resource ], local: true do |form| %>
       <div class="form-input">
         <%= form.label :name %>
         <%= form.text_field :name, placeholder: "Office space, 12sqm in Brunswick", size: 55 %>
@@ -10,7 +10,8 @@
       </div>
       <div class="form-input">
         <%= form.label :picture %>
-        <%= form.text_field :picture, placeholder: "www.toebeans.com.au", size: 55 %>
+        <%#= form.text_field :picture, placeholder: "www.toebeans.com.au", size: 55 %>
+        <%= form.file_field :picture, accept: 'image/png,image/gif,image/jpeg,image/jpg,image/svg+xml,image/webp' %>
       </div>
       <%= form.hidden_field :business_id, :value => @business.id %>
       <%= form.hidden_field :user_id, :value => @user.id %>
