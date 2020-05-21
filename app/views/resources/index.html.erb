@@ -5,7 +5,8 @@
     <% b.resources.each do |resource| %>
       <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
     <% end %>
-    <% if @current_userid == b.user_id %>
+    <%# if @current_userid == b.user_id %>
+    <% if can? :edit, b %>
       <div class="home-column-panel">
         <%= link_to "New resource for #{b.name}", new_business_resource_path(b), class: "home-column-surface" %>
       </div>

@@ -255,14 +255,22 @@ nav {
   }
   .form-input {
     padding: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     * {
       @extend .inlinebutton;
+      display: block;
+      width: 100%;
+      flex:1 1 0%;
       border: 1px solid rgba( $partage-purple, 0.33 );
       border-radius: 0.5em 0 0.5em 0;
-      max-width: max-content;
-      display: block;
       color: $forecolor;
       margin: 2px;
+    }
+    label {
+      display: block;
+      width: min-content;
     }
   }
 }

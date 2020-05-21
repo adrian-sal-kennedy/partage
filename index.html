@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"			"http://www.w3.org/TR/REC-html40/loose.dtd"><HTML><HEAD>	<TITLE>Spinning Probability</TITLE></HEAD><BODY BGCOLOR="#FFFFFF">		<center><CENTER>
+<script language="JavaScript">
+
+function getCookie(name){
+	var cookieName = name + "=";
+	var cookieLength = document.cookie.length;
+	var cookieBegin = 0;
+	while (cookieBegin < cookieLength) {
+		var valueBegin = cookieBegin + cookieName.length;
+		if (document.cookie.substring(cookieBegin, valueBegin) == cookieName) { 
+			var valueEnd = document.cookie.indexOf (";", valueBegin);
+			if (valueEnd == -1) valueEnd = cookieLength;
+				return unescape(document.cookie.substring(valueBegin, valueEnd));
+			}
+		cookieBegin = document.cookie.indexOf(" ", cookieBegin) + 1;      
+		if(cookieBegin == 0){
+			cookieBegin = cookieLength;
+		}
+	}
+	return null;
+}
+
+function checkReferrer(){
+//	document.write("<br>debug - function checkReferrer() Start<br>");	
+	if(document.referrer){
+		theReferrer = document.referrer.toLowerCase();
+//		document.write("<br>debug - theReferrer = "+theReferrer+"<br>");	
+
+		//  Netscape 4.7 on Mac does this. There may be others but not (Win IE 5.5, Netscape 6.1, Mac IE 5)
+		bookmarkCheck = theReferrer.indexOf("bookmark")
+//		document.write("<br>debug - bookmarkCheck = "+bookmarkCheck+"<br>");	
+
+		if(theReferrer.indexOf("harcourt") > 0 || theReferrer.indexOf("hbschool") > 0 || theReferrer.indexOf("si.edu") > 0 || theReferrer.indexOf("scilink") > 0 || theReferrer.indexOf("167.208.232.41") > 0){
+			return "harcourt";
+		}
+		else if(theReferrer.indexOf("easley.durham") > 0 || theReferrer.indexOf("courses.maine.edu") > 0 || theReferrer.indexOf("reinvent.k12") > 0 || theReferrer.indexOf("usborne-quicklinks") > 0 || theReferrer.indexOf("rss.edgate") > 0){
+			return "permission";
+		}
+		else if(bookmarkCheck >= 0){
+//			document.write("<br>debug - The document.referrer object was found, it was bookmark.<br>");	
+			return "bookmark";
+		}
+		else{
+//			document.write("<br>debug - The document.referrer object was found but not harcourt<br>");	
+			return "no";
+		}
+	}
+	else{
+//		document.write("<br>debug - The document.referrer object was not found<br>");	
+		return "none";
+	}
+//	document.write("<br>debug - function checkReferrer() End w/o return<br>");	
+}
+
+// Start Main
+
+referrer = "harcourt";
+// referrer = checkReferrer();
+goBack = getCookie("back");
+
+if(goBack && referrer == "harcourt"){
+	document.write("<MAP NAME=\"banner_nav\">\n");
+	document.write("	<AREA SHAPE=rect COORDS=\"335,1 404,10\" HREF=\"/search\" TARGET=\"_top\">\n");
+	document.write("	<AREA SHAPE=rect COORDS=\"424,1 475,10\" HREF=\""+goBack+"\" TARGET=\"_top\">\n");
+	document.write("	<AREA SHAPE=rect COORDS=\"494,1 544,10\" HREF=\"/index.html\" TARGET=\"_top\">\n");
+	document.write("</MAP>\n");
+	document.write("<IMG SRC=\"/images_tls/nav_search_bk_hm_border.gif\" WIDTH=550 HEIGHT=15 ISMAP USEMAP=\"#banner_nav\" BORDER=\"0\">\n");
+}
+else{
+	document.write("<MAP NAME=\"banner_nav\">");
+	document.write("        <AREA SHAPE=rect COORDS=\"407,1 475,10\" HREF=\"/search/\" TARGET=\"_top\">");
+	document.write("        <AREA SHAPE=rect COORDS=\"494,1 544,10\" HREF=\"/index.html\" TARGET=\"_top\">");
+	document.write("</MAP>");
+	document.write("<IMG SRC=\"/images_tls/nav_search_home_border.gif\" WIDTH=550 HEIGHT=15 ISMAP USEMAP=\"#banner_nav\" BORDER=\"0\">");
+}
+
+if(referrer == "none"){
+//	document.write("<br>debug - referrer not found (URL was bookmarked or typed in) - referrer = "+referrer+"<br>");		
+}
+else if(referrer != "harcourt" && referrer != "permission" && referrer != "none" && referrer != "bookmark"){
+//	document.write("<br>debug - referrer != 'harcourt' - Attempting to forward - referrer = "+referrer+"<br>");	
+	window.top.location = "/index.html";
+}
+else{
+//	document.write("<br>debug - referrer was harcourt - referrer = "+referrer+"<br>");		
+}
+
+</script>
+<BR>
+<BR>
+</CENTER><BR><OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" WIDTH=550 HEIGHT=402> <PARAM NAME=movie VALUE="probability5_30.swf"> <PARAM NAME=menu VALUE=false> <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=#FFFFFF> <EMBED src="probability5_30.swf" menu=false quality=high bgcolor=#FFFFFF  WIDTH=550 HEIGHT=402 TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></EMBED></OBJECT><BR><!--  Activity Foot Include  -->
+	</center></BODY></HTML>
