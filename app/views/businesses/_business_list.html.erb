@@ -3,16 +3,16 @@
     <h1>
       <%= biz.name %>
     </h1>
-    <h2 class="wrap-25vw">
+    <h2 class="wrap-text">
       <%= link_to biz.url, clean_url(biz.url), target: "_blank" %>
     </h2>
-    <li class="wrap-25vw">
+    <li class="wrap-text">
       <%= "Address: #{biz.location}" %>
     </li>
     <li>
       <%= "lat: #{biz.latitude}, lon: #{biz.longitude}" %>
     </li>
-    <li class="wrap-25vw">
+    <li class="wrap-text">
       <%= biz.description %>
     </li>
     <p>

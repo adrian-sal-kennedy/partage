@@ -2,6 +2,6 @@
 <div class="home-column">
   <div class="home-column-panel">
     <h1><% "Lodge your interest in hiring #{@resource.name} from #{@business.name}." %></h1>
-    <%= render partial: 'resource_form', locals: {business: @business, resource: @resource, agreement: @agreement} %>
+    <%= render partial: 'agreement_form', locals: {business: @business, resource: @resource, agreement: @agreement} %>
   </div>
 </div>

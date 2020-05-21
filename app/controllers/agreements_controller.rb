@@ -1,15 +1,14 @@
 class AgreementsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_business, only: %i[new create show edit update destroy]
-  before_action :set_resource, only: %i[show edit update destroy]
+  before_action :set_user
+  before_action :set_business, only: %i[new show edit destroy]
+  before_action :set_resource, only: %i[new edit create destroy]
+  before_action :set_agreement, only: %i[new edit create destroy]
+  before_action :authenticate_user!
   load_and_authorize_resource
 
   def index
-    if params[:user_id]
-      @businesses = current_user.businesses.includes(resources: [:agreements])
-    else
-      flash.now[:alert] = "You must log in to see your agreements."
-    end
+    @businesses = current_user.businesses.includes(resources: [:agreements])
+    @resources = Resource.includes(:agreements).all
   end
 
   def show
@@ -19,6 +18,13 @@ class AgreementsController < ApplicationController
   end
 
   def create
+    if @agreement.errors.any?
+      render :new
+    else
+      @agreement = Agreement.create!(agreement_params)
+      flash[:notice] = "Successfully added agreement for #{@resource.name}"
+      redirect_to user_agreements_path(@user.id)
+    end
   end
 
   def update
@@ -32,15 +38,41 @@ class AgreementsController < ApplicationController
   def agreement_params
     params.require(:agreement).permit(
       :price,
-      :terms
+      :terms,
+      :resource_id,
+      :business_id
     )
   end
 
+  def set_user
+    if user_signed_in?
+      @user = current_user
+    else
+      puts "======= indexing all agreements for guest user" 
+      @user = User.new
+    end
+    puts "======== agreements_controller:set_user, user_id = #{@user.id}"
+  end
   def set_business
-    return unless params[:business_id]
-    @business = current_user.businesses.find(params[:business_id])
+    if params[:business_id]
+      @business = current_user.businesses.includes(resources: [:agreements]).find(params[:business_id])
+    else
+      @business = Business.all.includes(:resources).find(Resource.all.find(params[:resource_id]).business_id)
+    end
+    puts "======== agreements_controller:set_business = #{@business.id}"
   end
   def set_resource
-    @resource = Resource.find(params[:id])
+    if params[:resource_id]
+      @resource = @business.resources.includes(:agreements).find(params[:resource_id])
+      puts "======== agreements_controller:set_resource = #{@resource.id}, business_id = #{@business.id}"
+    else
+      @resource = Resource.all.includes(:agreements).find(params[:agreement][:resource_id])
+      puts "======== agreements_controller:set_resource = #{@resource.id}, business_id = #{@resource.business_id}"
+    end
+  end
+  def set_agreement
+    puts "======== agreements_controller:set_agreement, resource_id = #{@resource.id}"
+    return unless params[:id]
+    @agreement = current_user.agreements.find(params[:id])
   end
 end

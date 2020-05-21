@@ -1,11 +1,11 @@
 <%= render 'shared/navbar' %>
-<% if @businesses %>
+<% if @businesses.all.count > 0 %>
   <% if @current_userid == 0 %>
     <div class="home-column-inset">
       <% @businesses.each do |b| %>
-          <% b.resources.each do |resource| %>
-            <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
-          <% end %>
+        <% b.resources.each do |resource| %>
+          <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
+        <% end %>
       <% end %>
     </div>
   <% else %>
@@ -22,4 +22,8 @@
       <% end %>
     </div>
   <% end %>
+<% else %>
+  <div class="display">
+  <h2>You need to have a business to have resources. Click "Businesses" or the Factory icon to add one!</h2>
+  </div>  
 <% end %>

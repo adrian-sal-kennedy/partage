@@ -10,11 +10,12 @@
       </div>
       <div class="form-input">
         <%= form.label :picture %>
-        <%#= form.text_field :picture, placeholder: "www.toebeans.com.au", size: 55 %>
         <%= form.file_field :picture, accept: 'image/png,image/gif,image/jpeg,image/jpg,image/svg+xml,image/webp' %>
+        <%#= form.label "or enter a direct URL of a picture" %>
+        <%#= form.text_field :picture, placeholder: "www.toebeans.com.au/my_cat.jpg", size: 55 %>
       </div>
-      <%= form.hidden_field :business_id, :value => @business.id %>
-      <%= form.hidden_field :user_id, :value => @user.id %>
+      <%= form.hidden_field :business_id, value: @business.id %>
+      <%= form.hidden_field :user_id, value: @user.id %>
       <div class="form-input">
         <%= form.submit %>
       </div>

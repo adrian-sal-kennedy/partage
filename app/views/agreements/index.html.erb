@@ -2,12 +2,11 @@
 <% if @businesses %>
   <% @businesses.each do |b| %>
     <div class="home-column-panel">
-      <h2><%= b.name %></h2>
+      <h1><%= b.name %></h1>
     <% b.resources.each do |r| %>
       <% if r.agreements.count != 0 %>
-        <h2><%= r.name %></h2>
         <% r.agreements.each do |agg| %>
-          <%= render partial: 'agreement_list', locals: {agreement: agg, resource: r, divclass: "home-column-inset"} %>
+          <%= render partial: 'agreement_list', locals: {agreement: agg, divclass: "home-column-inset"} %>
         <% end %>
       <% else %>
         <ul>
@@ -17,4 +16,17 @@
     <% end %>
     </div>
   <% end %>
+<% else %>
+  <div class="home-column-panel">
+    <h2><%= @user.name %></h2>
+    <% if @user.agreements.count != 0 %>
+      <% @user.agreements.each do |agg| %>
+        <%= render partial: 'agreement_list', locals: {agreement: agg, divclass: "home-column-inset"} %>
+      <% end %>
+    <% else %>
+      <ul>
+        <li><%= "currently no agreements for #{@user.name}" %></li>
+      </ul>
+    <% end %>
+  </div>
 <% end %>

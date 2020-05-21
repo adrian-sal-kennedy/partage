@@ -232,6 +232,10 @@ nav {
   margin-right: 0.5rem;
   width: calc(100% - 1rem);
 }
+.left {
+  justify-content: left;
+  align-items: center;
+}
 .home-column-surface {
   @extend .home-column-panel;
   @extend .full-width-panel;
@@ -270,7 +274,7 @@ nav {
     }
     label {
       display: block;
-      width: min-content;
+      width: max-content;
     }
   }
 }

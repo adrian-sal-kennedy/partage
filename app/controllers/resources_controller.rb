@@ -30,15 +30,9 @@ class ResourcesController < ApplicationController
   end
 
   def new
-    # @business = current_user.businesses.find(params[:business_id])
-    # @resource = @business.resources.new
-    # @user = current_user
   end
 
   def edit
-    # @user = current_user
-    # @resource = @user.resources.find(params[:id])
-    # @business = current_user.businesses.find(params[:business_id])
   end
 
   def create
