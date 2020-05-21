@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :agreements
   end
   resources :users do
+    resources :businesses
     resources :resources
     resources :agreements
   end

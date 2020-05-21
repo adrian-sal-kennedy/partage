@@ -1,5 +1,5 @@
 class Resource < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   belongs_to :business
   has_many :agreements, dependent: :destroy
 

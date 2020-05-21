@@ -2,8 +2,8 @@
 <div class="home-column">
   <% if @business %>
     <%= render partial: 'business_list', locals: {biz: @business} %>
-    <% @business.resource.each do |resource| %>
-      <%= render partial: 'resources/resource_list', locals: {resource: resource} %>
+    <% @business.resources.each do |resource| %>
+      <%= render partial: 'resources/resource_list', locals: {resource: resource, business: @business, divclass: "home-column-surface"} %>
     <% end %>
   <% end %>
   <div class="home-column-panel">

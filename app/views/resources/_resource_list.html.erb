@@ -11,10 +11,13 @@
   <%= image_tag get_picture(resource.picture) %>
   <ul class="inline-list">
     <li><%= link_to 'View', resource_path(resource), class: "inlinebutton" %></li>
-    <% if can? :edit, resource %>
+    <%# if can? :edit, resource %>
+    <% if @current_userid == business.user_id %>
+      <% puts "user can edit this resource" %>
       <li><%= link_to 'Edit', edit_business_resource_path(business,resource), class: "inlinebutton" %></li>
       <li class="righthand"><%= link_to "Delete", resource_path(resource), method: :delete, data: { confirm: "This will delete #{resource.name} and all associated agreements. Are you sure?" }, class: "inlinebutton" %></li>
     <% else %>
+      <% puts "user cannot edit this resource" %>
       <li class="righthand"><%= link_to "I'm interested!", new_resource_agreement_path(resource), class: "inlinebutton" %>
     <% end %>
   </ul>

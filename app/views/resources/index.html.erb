@@ -1,16 +1,54 @@
 <%= render 'shared/navbar' %>
 <% if @businesses %>
-  <% @businesses.each do |b| %>
+  <% if @current_userid == 0 %>
     <div class="home-column-inset">
-    <% b.resources.each do |resource| %>
-      <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
-    <% end %>
-    <%# if @current_userid == b.user_id %>
-    <% if can? :edit, b %>
-      <div class="home-column-panel">
-        <%= link_to "New resource for #{b.name}", new_business_resource_path(b), class: "home-column-surface" %>
-      </div>
-    <% end %>
+      <% @businesses.each do |b| %>
+          <% b.resources.each do |resource| %>
+            <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
+          <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="home-column-inset">
+      <% @businesses.each do |b| %>
+        <% b.resources.each do |resource| %>
+          <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
+        <% end %>
+        <% if @current_userid == b.user_id %>
+          <div class="home-column-inset full-width-panel">
+            <%= link_to "New resource for #{b.name}", new_business_resource_path(b), class: "home-column-surface" %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
+
+<!--
+<%= render 'shared/navbar' %>
+<% if @businesses %>
+  <% if @current_userid == 0 %>
+      <div class="home-column-inset">
+  <% end %>
+  <% @businesses.each do |b| %>
+    
+    <% if @current_userid == b.user_id %>
+      <div class="home-column-inset">
+    <% end %>
+    <% b.resources.each do |resource| %>
+      <%= render partial: 'resource_list', locals: {resource: resource, business: b, divclass: "home-column-panel"} %>
+    <% end %>
+    <% if @current_userid == b.user_id %>
+    <%# if can? :edit, b %>
+      <div class="home-column-inset full-width-panel">
+        <%= link_to "New resource for #{b.name}", new_business_resource_path(b), class: "home-column-surface" %>
+      </div>
+    <% end %>
+    <% if @current_userid == b.user_id %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if @current_userid == 0 %>
+    </div>
+  <% end %>
+<% end %> -->

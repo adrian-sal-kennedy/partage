@@ -14,7 +14,7 @@ class Ability
     #   can [:index, :show], [Business, Resource, Agreement]
     # cannot [:create, :edit, :update, :destroy], [Business, Resource, Agreement]
 
-    can [:create, :edit, :update, :destroy], [Business, Resource, Agreement], user_id: user.id
+    can [:create, :edit, :update, :destroy], [Business, Agreement, Resource], user_id: user.id
 
     #   can [:index, :show, :new, :create], [Agreement]
     #   can [:edit, :update, :destroy], [Agreement], user_id: user.id

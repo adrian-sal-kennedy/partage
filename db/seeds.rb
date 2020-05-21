@@ -51,6 +51,7 @@ end
 rez = Resource.create(
   {
       name: 'kitchen space',
+      user_id: 1,
       business_id: 2,
       description: 'large category 3 kitchen, time share with small company 3 days/wk',
       picture: 'https://live.staticflickr.com/3850/15222980396_b43578325d_b.jpg'

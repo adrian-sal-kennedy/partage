@@ -9,16 +9,20 @@ class ResourcesController < ApplicationController
       @businesses = current_user.businesses.includes(:resources)
       @current_userid = current_user.id
     else
+      puts "======= indexing all resources for guest user"
       @businesses = Business.includes(:resources)
-      # user_id is never zero so below will make the view realise our user owns nothing.
-      @current_userid = 0
+      if user_signed_in?
+        @current_userid = current_user.id
+      else
+        # user_id is never zero so below will make the view realise our user owns nothing.  
+        @current_userid = 0
+      end
     end
   end
 
   def show
-    @resource = Resource.find(params[:id])
     if params[:business_id]
-      @business = current_user.businesses.find(params[:business_id])
+      @business = current_user.businesses.includes(:resources).find(params[:business_id])
     else
       @business = Business.includes(:resources).find(@resource.business_id)
     end
@@ -60,6 +64,7 @@ class ResourcesController < ApplicationController
   end
 
   def set_business
+    puts "======== resources_controller:set_business = #{params[:business_id]}"
     return unless params[:business_id]
     @business = current_user.businesses.find(params[:business_id])
   end
