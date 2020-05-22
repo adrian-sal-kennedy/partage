@@ -1,8 +1,9 @@
 class AgreementsController < ApplicationController
   before_action :set_user
-  before_action :set_business, only: %i[new show edit destroy]
-  before_action :set_resource, only: %i[new edit create destroy]
-  before_action :set_agreement, only: %i[new edit create destroy]
+  before_action :set_business, only: %i[new]
+  before_action :set_resource, only: %i[new create]
+  before_action :set_agreement, only: %i[new create]
+  before_action :set_user_agreement, only: %i[show edit destroy]
   before_action :authenticate_user!
   load_and_authorize_resource
 
@@ -15,6 +16,9 @@ class AgreementsController < ApplicationController
   end
 
   def new
+  end
+
+  def edit
   end
 
   def create
@@ -57,7 +61,7 @@ class AgreementsController < ApplicationController
     if params[:business_id]
       @business = current_user.businesses.includes(resources: [:agreements]).find(params[:business_id])
     else
-      @business = Business.all.includes(:resources).find(Resource.all.find(params[:resource_id]).business_id)
+      @business = Business.all.includes(:resources).find(Resource.all.find(params[:id]).business_id)
     end
     puts "======== agreements_controller:set_business = #{@business.id}"
   end
@@ -66,7 +70,7 @@ class AgreementsController < ApplicationController
       @resource = @business.resources.includes(:agreements).find(params[:resource_id])
       puts "======== agreements_controller:set_resource = #{@resource.id}, business_id = #{@business.id}"
     else
-      @resource = Resource.all.includes(:agreements).find(params[:agreement][:resource_id])
+      @resource = Resource.all.includes(:agreements).find(params[:agreement][:id])
       puts "======== agreements_controller:set_resource = #{@resource.id}, business_id = #{@resource.business_id}"
     end
   end
@@ -74,5 +78,9 @@ class AgreementsController < ApplicationController
     puts "======== agreements_controller:set_agreement, resource_id = #{@resource.id}"
     return unless params[:id]
     @agreement = current_user.agreements.find(params[:id])
+  end
+  def set_user_agreement
+    @agreement = Agreement.find(params[:id])
+    @resource = Resource.find(@agreement.resource_id)
   end
 end

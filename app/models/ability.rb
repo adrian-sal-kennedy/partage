@@ -16,7 +16,7 @@ class Ability
 
     if user.present?
       can :create, [Business, Agreement, Resource]
-      can %i[update destroy], [Business, Agreement, Resource], user_id: user.id
+      can %i[edit update destroy], [Business, Agreement, Resource], user_id: user.id
     end
     #   can [:index, :show, :new, :create], [Agreement]
     #   can [:edit, :update, :destroy], [Agreement], user_id: user.id

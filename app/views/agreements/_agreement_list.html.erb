@@ -10,6 +10,7 @@
       <%= "Contractual terms: #{agreement.terms}" %>
     </li>
     <p>
+      <%= link_to "View agreement", user_agreement_path(current_user.id,agreement.id), class: "inlinebutton" %>
       <%= link_to "Delete agreement", user_agreement_path(current_user.id,agreement.id), method: :delete, data: { confirm: "This action will delete this agreement. Are you sure?" }, class: "inlinebutton" %>
     </p>
     </ul>

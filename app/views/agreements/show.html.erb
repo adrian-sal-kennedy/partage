@@ -1,2 +1,19 @@
-<h1>Agreements#show</h1>
-<p>Find me in app/views/agreements/show.html.erb</p>
+<%= render 'shared/navbar' %>
+<div class="home-column-panel">
+  <ul>
+    <h1>
+      <%= @resource.name %>
+    </h1>
+    <li class="wrap-text">
+      <%= "Price: #{@agreement.price}" %>
+    </li>
+    <li class="wrap-text">
+      <%= "Contractual terms: #{@agreement.terms}" %>
+    </li>
+    <p>
+      <%= link_to "View agreement", user_agreement_path(current_user.id,@agreement.id), class: "inlinebutton" %>
+      <%= link_to "Edit agreement", edit_user_agreement_path(current_user.id,@agreement.id), class: "inlinebutton" %>
+      <%= link_to "Delete agreement", user_agreement_path(current_user.id,@agreement.id), method: :delete, data: { confirm: "This action will delete this agreement. Are you sure?" }, class: "inlinebutton" %>
+    </p>
+    </ul>
+</div>
