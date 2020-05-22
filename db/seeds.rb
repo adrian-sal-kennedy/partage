@@ -16,10 +16,10 @@ s3 = Aws::S3::Resource.new(region: 'ap-southeast-2')
 
 puts 'Seeding Users...'
 users.each do |usr|
-  usr = User.create(usr)
+  usr = User.find_or_create_by(usr)
   puts "Created #{usr[:id]}!"
 end
-usr = User.create(
+usr = User.find_or_create_by(
   {
     name: 'bogey mcboagface',
     position: 'booger officer',
@@ -31,11 +31,11 @@ puts "--" * 10 + "\n\n"
 
 puts "Seeding Businesses..."
 businesses.each do |biz|
-  biz = Business.create(biz)
+  biz = Business.find_or_create_by(biz)
   business = Business.find_by_name(biz[:name])
   puts "Created #{business.name}!"
 end
-biz = Business.create(
+biz = Business.find_or_create_by(
   {
     name: 'The Russian Pty Ltd',
     url: 'www.therussian.com.au',
@@ -49,13 +49,13 @@ puts "--" * 10 + "\n\n"
 puts "Seeding Resources..."
 
 resources.each do |r|
-  rez = Resource.create(r.except(:picture))
+  rez = Resource.find_or_create_by(r.except(:picture))
   path = r[:picture]
   rez.picture.attach(io: URI.open(path), filename: "#{File.extname(path)}")
   resource = Resource.find_by_name(rez[:name])
   puts "Created #{resource.name}!"
 end
-rez = Resource.create(
+rez = Resource.find_or_create_by(
   {
       name: 'kitchen space',
       user_id: 1,
@@ -65,3 +65,5 @@ rez = Resource.create(
 )
 path = 'https://live.staticflickr.com/3850/15222980396_b43578325d_b.jpg'
 rez.picture.attach(io: URI.open(path), filename: "#{File.extname(path)}")
+
+  # {name: 'kitchen space',user_id: 1,business_id: 2,description: 'large category 3 kitchen, time share with small company 3 days/wk'}

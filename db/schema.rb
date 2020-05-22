@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_145625) do
+ActiveRecord::Schema.define(version: 2020_05_22_041520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 2020_05_21_145625) do
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["business_id"], name: "index_agreements_on_business_id"
     t.index ["resource_id"], name: "index_agreements_on_resource_id"
+    t.index ["user_id"], name: "index_agreements_on_user_id"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -96,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_145625) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "agreements", "businesses"
   add_foreign_key "agreements", "resources"
+  add_foreign_key "agreements", "users"
   add_foreign_key "businesses", "users"
   add_foreign_key "resources", "businesses"
 end
