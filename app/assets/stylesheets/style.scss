@@ -37,23 +37,22 @@ h1, h2, h3, h4, h5, h6, p {
 h1, h2, {
   font-family: 'AlteDIN1451Mittelschrift';
 }
+.gradient-bg {
+  background: linear-gradient(90deg, rgba($partage-purple,0.5) 0%, rgba(#fff,1) 40%, rgba(#fff,1) 60%, rgba($partage-purple,0.5) 100%);
+}
 html {
   background-color: $backcolor;
   color: $forecolor;
-}
-.gradient-bg {
-  background: linear-gradient(90deg, rgba($partage-purple,0.5) 0%, rgba(#fff,1) 40%, rgba(#fff,1) 60%, rgba($partage-purple,0.5) 100%);
+  @extend .gradient-bg;
 }
 .container {
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
   min-height: 100vh;
-  background-color: rgba( $partage-purple, 0.1);
   color: $forecolor;
   margin-left: -1em;
   padding-left: 1em;
-  @extend .gradient-bg;
 }
 .link {
   &:hover {
@@ -330,12 +329,39 @@ nav {
   }
 }
 .yeet-up {
-  animation: yeet-up 2s ease-in-out 0s forwards;
+  animation: yeet-up 0.5s ease-in-out 0s forwards;
   // keyframes, duration, timing-func, init-delay, direction
 }
 @keyframes yeet-up {
   to {
     transform: translate(0, -100vh);
+  }
+}
+.yeet-down {
+  animation: yeet-down 0.5s ease-in-out 0s forwards;
+  // keyframes, duration, timing-func, init-delay, direction
+}
+@keyframes yeet-down {
+  to {
+    transform: translate(0, 100vh);
+  }
+}
+.yeet-left {
+  animation: yeet-left 0.5s ease-in-out 0s forwards;
+  // keyframes, duration, timing-func, init-delay, direction
+}
+@keyframes yeet-left {
+  to {
+    transform: translate(-100vw, 0);
+  }
+}
+.yeet-right {
+  animation: yeet-right 0.5s ease-in-out 0s forwards;
+  // keyframes, duration, timing-func, init-delay, direction
+}
+@keyframes yeet-right {
+  to {
+    transform: translate(100vw, 0);
   }
 }
 

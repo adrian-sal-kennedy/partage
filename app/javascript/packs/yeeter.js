@@ -1,8 +1,8 @@
-yeet = function yeet(classToYeet,yeetclass) {
+yeet = function yeet(classToYeet,yeetClass) {
   var elements = document.getElementsByClassName(classToYeet);
-  var blocky = Array.prototype.filter.call(elements, function(element){
-    element.classList.remove(yeetclass);
+  var blk = Array.prototype.filter.call(elements, function(element){
+    element.classList.remove(yeetClass);
     void element.offsetWidth;
-    element.classList.add(yeetclass);
+    element.classList.add(yeetClass);
   });
 }
