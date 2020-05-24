@@ -364,7 +364,15 @@ nav {
     transform: translate(100vw, 0);
   }
 }
-
+.logo-shrink {
+  animation: logo-shrink 0.5s ease-in-out 0s forwards;
+  // keyframes, duration, timing-func, init-delay, direction
+}
+@keyframes logo-shrink {
+  to {
+    transform: translate(-4vw, 1vw) scale(0.75,0.75);
+  }
+}
 
 // media query overrides:
 @media screen and (max-width: $breakpoint-icons) {
