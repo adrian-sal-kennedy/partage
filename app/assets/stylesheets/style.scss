@@ -319,6 +319,19 @@ nav {
   background-color: #20d020d0;
 }
 
+// initial positioning for animations
+.onleft {
+  transform: translate(-100vw, 0);
+}
+.onright {
+  transform: translate(100vw, 0);
+}
+.ontop {
+  transform: translate(0, -100vh);
+}
+.onbottom {
+  transform: translate(0, 100vh);
+}
 // animations
 @keyframes disappear {
   to {
@@ -339,7 +352,6 @@ nav {
 }
 .yeet-down {
   animation: yeet-down 0.5s ease-in-out 0s forwards;
-  // keyframes, duration, timing-func, init-delay, direction
 }
 @keyframes yeet-down {
   to {
@@ -348,25 +360,48 @@ nav {
 }
 .yeet-left {
   animation: yeet-left 0.5s ease-in-out 0s forwards;
-  // keyframes, duration, timing-func, init-delay, direction
 }
 @keyframes yeet-left {
   to {
     transform: translate(-100vw, 0);
   }
 }
+.yeet-left-home {
+  animation: yeet-left-home 0.5s ease-in-out 0s forwards;
+  }
+@keyframes yeet-left-home {
+  to {
+    transform: translate(-150vw, -50%);
+  }
+}
 .yeet-right {
   animation: yeet-right 0.5s ease-in-out 0s forwards;
-  // keyframes, duration, timing-func, init-delay, direction
 }
 @keyframes yeet-right {
   to {
     transform: translate(100vw, 0);
   }
 }
+//yeet-home needs to be applied to an element in class .absolute-mid or it'll go bad.
+.yeet-home {
+  animation: yeet-home 0.5s ease-in-out 0s forwards;
+}
+@keyframes yeet-home {
+  to {
+    transform: translate(0, 0);
+  }
+}
+.absolute-mid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.absolute-mid-home {
+  @extend .absolute-mid;
+  transform: translate(-50%,-50%);
+}
 .logo-shrink {
   animation: logo-shrink 0.5s ease-in-out 0s forwards;
-  // keyframes, duration, timing-func, init-delay, direction
 }
 @keyframes logo-shrink {
   to {
