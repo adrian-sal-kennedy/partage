@@ -163,6 +163,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  text-align: center;
   margin-top: auto;
   margin-bottom: auto;
   box-sizing: border-box;
@@ -183,7 +184,11 @@ nav {
     @extend .oblique-shadow;
   }
   & h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+  & h3 {
+    font-family: 'AlteDIN1451Mittelschrift';
+    font-size: 1.5rem;
   }
 }
 
