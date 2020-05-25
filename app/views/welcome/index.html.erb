@@ -5,8 +5,9 @@
   <h1>Partage</h1>
   <h2>Welcome to an exciting new concept in business resource sharing.</h2>
   <p>Watch this space, I promise great things are afoot.</p>
-  <button class="inlinebutton a" onclick="yeet('homepage','yeet-left-home');yeet('page1','yeet-home')">About Partage</button>
+  <button class="inlinebutton a" onclick="yeet('homepage','yeet-left');yeet('page1','yeet-home')">About Partage</button>
 </div>
 <%= render partial: 'about_page1', locals: {divclass: "display page1 onright"} %>
+<%= render partial: 'about_page2', locals: {divclass: "display page2 onright"} %>
 
 <%= javascript_pack_tag 'yeeter' %>

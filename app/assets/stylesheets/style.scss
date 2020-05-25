@@ -325,17 +325,24 @@ nav {
 }
 
 // initial positioning for animations
+.absolute {
+  position: absolute;
+}
 .onleft {
-  transform: translate(-100vw, 0);
+  @extend .absolute;
+  transform: translate(-100vw, 50%);
 }
 .onright {
-  transform: translate(100vw, 0);
+  @extend .absolute;
+  transform: translate(100vw, 50%);
 }
 .ontop {
-  transform: translate(0, -100vh);
+  @extend .absolute;
+  transform: translate(0, -50vh);
 }
 .onbottom {
-  transform: translate(0, 100vh);
+  @extend .absolute;
+  transform: translate(0, 150vh);
 }
 // animations
 @keyframes disappear {
@@ -368,15 +375,7 @@ nav {
 }
 @keyframes yeet-left {
   to {
-    transform: translate(-100vw, 0);
-  }
-}
-.yeet-left-home {
-  animation: yeet-left-home 0.5s ease-in-out 0s forwards;
-  }
-@keyframes yeet-left-home {
-  to {
-    transform: translate(-150vw, -50%);
+    transform: translate(-200vw, -50%);
   }
 }
 .yeet-right {
@@ -384,7 +383,7 @@ nav {
 }
 @keyframes yeet-right {
   to {
-    transform: translate(100vw, 0);
+    transform: translate(100vw, -50%);
   }
 }
 //yeet-home needs to be applied to an element in class .absolute-mid or it'll go bad.
@@ -393,7 +392,7 @@ nav {
 }
 @keyframes yeet-home {
   to {
-    transform: translate(0, 0);
+    transform: translate(0%,50%);
   }
 }
 .absolute-mid {
