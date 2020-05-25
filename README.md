@@ -97,21 +97,35 @@ Partage needs to pay it's own bills. There are three ways to monetize this servi
 
 ## User stories
 
-### "As a founder of a start-up food business, I need a way to find some commercial kitchen space in a council I choose, so I can spend less on compliance theatre and more on actual good practices."
+### *"As a founder of a start-up food business, I need a way to find some commercial kitchen space in a council I choose, so I can spend less on compliance theatre and more on actual good practices."*
 This is a pretty common problem. In Victoria, food permits are issued by council rather than state, and quite often they overinterpret some rules to the point of absurdity. Start ups often work out of their own home kitchens, but this is not optimal in any way, and you're stuck with the regulations where you live, having to modify your own house to meet their often contradictory whims.
 
 This problem is solved using thoughtful use of the Geocoder gem for Rails - openstreetmap holds "county" information, which in Australia resolves to the shire name (like "City Of Boroondara, etc). This is accessible once your record has GPS coordinates and is "reverse-geocoded". This all happens on input validation after the user clicks "submit" and before the record is written to the database. They supply a reasonably free-form address (like "22 buckley st carnegie" - no postcode, no country code, just enough to make it unique) and Geocoder finds it and stores both coordinates and details in their own fields (street number, street name, suburb, county, state, country).
 
 The user searching for a kitchen will only see the suburb and council names.
 
-### "As a struggling business owner, I want to hire out my gear because it's only used half the time but costs the same to keep. This way it wont cost any extra but at least it's earning me something when I don't need it."
+### *"As a struggling business owner, I want to hire out my gear because it's only used half the time but costs the same to keep. This way it wont cost any extra but at least it's earning me something when I don't need it."*
 
 A business owner can list anything at all as a resource for hire - even human resources if need be. An idle forklift and a bit of warehouse space are extremely useful things and you can arrange with a Partage customer how to safely share these things and keep peace of mind.
 
-### "As a pretty paranoid guy who's been burnt before, I want assurance that if something bad happens to my stuff, I'll be covered."
+### *"As a pretty paranoid guy who's been burnt before, I want assurance that if something bad happens to my stuff, I'll be covered."*
 
 Partage, when feature-complete, will provide links to all the necessary paperwork, and with a premium account aims to also provide insurance and legal help as required and relevant.
 
+## Wireframes
+These are pretty basic for a number of reasons - I'd just discovered "Write!" and figured that's a much more fluid way to dump my brain into the computer with my wacom, and the UI itself is anticipated to change quite a lot in response to the needs of the market. I like a "node-based" approach where each listing is a unit rather than a row on a page. The information that is required while browsing is minimal and I would like to keep text to a minimum.
+![Whiteboard-like wireframe of the Partage layout](docs/wireframes.svg)
+
+## Entity Relationship Diagram
+![ERD diagram courtesy of dbdiagram.io](docs/partage-ERD.svg)
+Core function depends only on these tables and these relationships. The schema also contains tables for payment processing and image handling.
+
+## High level abstractions
+This project is built on Rails, hence every database table has it's own Class that inherits from ApplicationRecord which in turn inherits from ActiveRecord::Base. ActiveRecord is a Ruby module that is a core part of Rails. It provides a way to translate Ruby commands into database query languages (SQL).
+
+All views are called by a Controller class that inherits from Rails' ApplicationController which in turn inherits from ActionController. HTTP requests go through routes.rb and call ActionController actions, defined as methods in each Controller object (index, show, edit, create, update etc). The controllers also make the necessary requests of the Model objects which supply data from the Postgres SQL database.
+
+Image upload and S3 storage is handled by ActiveStorage. Active storage provides the ability to upload to many cloud services or locally with a simple config option - all the fiddly code is abstracted away to allow rapid development.
 
 ## Third party services
 
@@ -142,7 +156,7 @@ Partage, when feature-complete, will provide links to all the necessary paperwor
 
 ## Project management
 
-This project was quite large in scope, partly because I set a large goal - I want this project to be useful and viable. I could really have used such a thing when starting out.
+This project was quite large in scope, partly because I set a large goal - I want this project to be useful and viable. I could really have used such a thing when starting out with my partner years ago.
 
 As a consequence, a Kanban style management model was useful because new features could be added easily and scope can shift by simply moving a card that represents a task.
 
