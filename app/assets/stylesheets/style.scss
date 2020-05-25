@@ -34,7 +34,7 @@ html {
 h1, h2, h3, h4, h5, h6, p {
   margin-left: 1rem;
 }
-h1, h2, {
+h1, h2 {
   font-family: 'AlteDIN1451Mittelschrift';
 }
 .gradient-bg {
@@ -167,7 +167,7 @@ nav {
   margin-top: auto;
   margin-bottom: auto;
   box-sizing: border-box;
-  max-width: calc(100% - 2rem);
+  max-width: calc(71% - 2rem);
   & > * {
     margin: 0.5rem 0;
   }
@@ -186,7 +186,7 @@ nav {
   & h2 {
     font-size: 2.5rem;
   }
-  & h3 {
+  & h3 , h3 > li {
     font-family: 'AlteDIN1451Mittelschrift';
     font-size: 1.5rem;
   }
@@ -201,6 +201,14 @@ nav {
   // flex: 1 1 30%;
   max-height: max-content;
   margin: 0.5rem;
+}
+.nowrap {
+  flex-wrap: nowrap;
+  align-items: baseline;
+  p, h3 {
+    text-align: left;
+  }
+  flex: 0 0 45%;
 }
 .home-column-inset {
   @extend .home-column;
@@ -324,6 +332,12 @@ nav {
   background-color: #20d020d0;
 }
 
+// animation-initial-positions
+.onright {
+  // @extend .absolute-mid;
+  transform: translate(150vh, -50vh);
+}
+
 // animations
 @keyframes disappear {
   to {
@@ -333,13 +347,22 @@ nav {
     visibility: hidden;
   }
 }
+.yeet-home {
+  animation: yeet-home 0.5s ease-in-out 0s forwards;
+  // keyframes, duration, timing-func, init-delay, direction
+}
+@keyframes yeet-home {
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
 .yeet-up {
   animation: yeet-up 0.5s ease-in-out 0s forwards;
   // keyframes, duration, timing-func, init-delay, direction
 }
 @keyframes yeet-up {
   to {
-    transform: translate(0, -100vh);
+    transform: translate(0, -100%);
   }
 }
 .yeet-down {
@@ -348,7 +371,7 @@ nav {
 }
 @keyframes yeet-down {
   to {
-    transform: translate(0, 100vh);
+    transform: translate(0, 100%);
   }
 }
 .yeet-left {
@@ -357,7 +380,7 @@ nav {
 }
 @keyframes yeet-left {
   to {
-    transform: translate(-100vw, 0);
+    transform: translate(-250%, -50%);
   }
 }
 .yeet-right {
@@ -366,7 +389,7 @@ nav {
 }
 @keyframes yeet-right {
   to {
-    transform: translate(100vw, -50%);
+    transform: translate(100%, -50%);
   }
 }
 .logo-shrink {
@@ -411,7 +434,7 @@ nav {
   .text{display: inline;}
 }
 @media screen and (max-width: $breakpoint-tablet) {
-  .home-column{
+  .home-column, .display{
     width: calc(100% - 1rem);
   }
   .home-column-panel{

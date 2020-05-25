@@ -1,20 +1,26 @@
 
-<%= render 'shared/navbar' %>
-<div class="display">
-  <%= render 'shared/logo' %>
-  <h1>Partage</h1>
-  <h2>Welcome to an exciting new concept in business resource sharing.</h2>
-  <p>Watch this space, I promise great things are afoot.</p>
-<<<<<<< HEAD
-  <button class="inlinebutton a" onclick="yeet('homepage','yeet-left');yeet('page1','yeet-home')">About Partage</button>
+<div class="container">
+  <%= render 'shared/navbar' %>
+  <div class="display homepage">
+    <%= render 'shared/logo' %>
+    <h1>Partage</h1>
+    <h2>Welcome to an exciting new concept in business resource sharing.</h2>
+    <p>Watch this space, I promise great things are afoot.</p>
+  </div>
 </div>
-<%= render partial: 'about_page1', locals: {divclass: "display page1 onright"} %>
-<%= render partial: 'about_page2', locals: {divclass: "display page2 onright"} %>
-
-<%= javascript_pack_tag 'yeeter' %>
+<div class="container" style="min-height:100vh;">
+  <%= render 'about_page1' %>
 </div>
-=======
-  <%# <button class="inlinebutton a" onclick="yeet('homebutton','logo-shrink'); yeet('display','yeet-left'); yeet('nav','yeet-up');">Yeet the toolbar!</button> %>
+<div class="container" style="min-height:100vh;">
+  <%= render 'about_page2' %>
 </div>
-<%# <%= javascript_pack_tag 'yeeter' %>
->>>>>>> parent of a7caf3d... got sliding pages yeeting nicely
+<div class="container" style="min-height:100vh;">
+  <%= render 'about_page3' %>
+</div>
+<div class="container" style="min-height:100vh;">
+  <%= render 'about_page4' %>
+</div>
+<div class="container" style="min-height:100vh;">
+  <%= render 'about_page5' %>
+</div>
+</div>
