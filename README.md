@@ -112,6 +112,12 @@ A business owner can list anything at all as a resource for hire - even human re
 
 Partage, when feature-complete, will provide links to all the necessary paperwork, and with a premium account aims to also provide insurance and legal help as required and relevant.
 
+### *"I need a way to make sure I can trust the people I'm dealing with."*
+
+Once feature-complete, all agreements will have a full history. Users will be able to message each other and anonymously review each other. Reviews can also be invisible - this will effectively weight the search algorithm based on rating. Such features will likely only be noticable when there are a lot of users.
+
+Template forms are to be built in from the beginning, and shall include NDA and similar so that parties have recourse if IP is stolen or suspected to be. This will also help protect people in case they are accused in bad faith.
+
 ## Wireframes
 These are pretty basic for a number of reasons - I'd just discovered "Write!" and figured that's a much more fluid way to dump my brain into the computer with my wacom, and the UI itself is anticipated to change quite a lot in response to the needs of the market. I like a "node-based" approach where each listing is a unit rather than a row on a page. The information that is required while browsing is minimal and I would like to keep text to a minimum.
 ![Whiteboard-like wireframe of the Partage layout](docs/wireframes.svg)
@@ -120,19 +126,24 @@ These are pretty basic for a number of reasons - I'd just discovered "Write!" an
 ![ERD diagram courtesy of dbdiagram.io](docs/partage-ERD.svg)
 Core function depends only on these tables and these relationships. The schema also contains tables for payment processing and image handling.
 
-## High level abstractions
+## High level components and abstractions
 This project is built on Rails, hence every database table has it's own Class that inherits from ApplicationRecord which in turn inherits from ActiveRecord::Base. ActiveRecord is a Ruby module that is a core part of Rails. It provides a way to translate Ruby commands into database query languages (SQL).
 
 All views are called by a Controller class that inherits from Rails' ApplicationController which in turn inherits from ActionController. HTTP requests go through routes.rb and call ActionController actions, defined as methods in each Controller object (index, show, edit, create, update etc). The controllers also make the necessary requests of the Model objects which supply data from the Postgres SQL database.
+
+User Authentication is handled by the Devise gem - this abstracts away a lot of sensitive and tricky procedures that not only would it be outside the scope of this project to implement from scratch, but the chances of doing it without creating security exploits are very high. Abstraction in this case not only makes things quicker to build, but also limits my liability in case of a future data breach.
+
+User Authorization (permission) is managed by CanCanCan, a fork of the old CanCan Ruby gem. Again this allows rapid development and enhances security. Miles of code are reduced to a few lines and a config file.
+
+Geocoding is an important part of this project, and is managed by the Geocoder gem. This is helpful as I can easily choose between OpenStreetMap or Google's API. It exposes various address fields so the App can do things like search by location, or in future use a webscraper on local government websites to provide relevant forms for the resources listed on the App. 
 
 Image upload and S3 storage is handled by ActiveStorage. Active storage provides the ability to upload to many cloud services or locally with a simple config option - all the fiddly code is abstracted away to allow rapid development.
 
 ## Third party services
 
-- Devise (for User authentication)
-- CanCanCan (for User Authorization and permissions)
 - AWS S3 (for storing images)
 - Stripe (for processing payments)
+- Google Maps API and/or OpenStreetMap (for location services)
 - Github (for remote source control)
 - Heroku (for deployment of the app, linked to the git branch "deploy-heroku" rather than "master", just as an extra protection against accidental breakage)
 
