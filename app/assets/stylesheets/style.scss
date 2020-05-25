@@ -369,24 +369,6 @@ nav {
     transform: translate(100vw, -50%);
   }
 }
-//yeet-home needs to be applied to an element in class .absolute-mid or it'll go bad.
-.yeet-home {
-  animation: yeet-home 0.5s ease-in-out 0s forwards;
-}
-@keyframes yeet-home {
-  to {
-    transform: translate(0%,50%);
-  }
-}
-.absolute-mid {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-}
-.absolute-mid-home {
-  @extend .absolute-mid;
-  transform: translate(-50%,-50%);
-}
 .logo-shrink {
   animation: logo-shrink 0.5s ease-in-out 0s forwards;
   // keyframes, duration, timing-func, init-delay, direction
